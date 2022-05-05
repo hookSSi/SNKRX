@@ -65,45 +65,45 @@ function BuyScreen:on_enter(from, level, loop, units, passives, shop_level, shop
   self:set_party_and_sets()
   self:set_items()
 
-  self.shop_text = Text({{text = '[wavy_mid, fg]shop [fg]- gold: [yellow]' .. gold, font = pixul_font, alignment = 'center'}}, global_text_tags)
-  self.party_text = Text({{text = '[wavy_mid, fg]party ' .. tostring(#units) .. '/' .. tostring(max_units), font = pixul_font, alignment = 'center'}}, global_text_tags)
-  self.sets_text = Text({{text = '[wavy_mid, fg]classes', font = pixul_font, alignment = 'center'}}, global_text_tags)
-  self.items_text = Text({{text = '[wavy_mid, fg]items', font = pixul_font, alignment = 'center'}}, global_text_tags)
-  self.ng_text = Text({{text = '[fg]NG+' .. current_new_game_plus, font = pixul_font, alignment = 'center'}}, global_text_tags)
+  self.shop_text = Text({{text = '[wavy_mid, fg]상점 [fg]- gold: [yellow]' .. gold, font = neodgm_font, alignment = 'center'}}, global_text_tags)
+  self.party_text = Text({{text = '[wavy_mid, fg]파티 ' .. tostring(#units) .. '/' .. tostring(max_units), font = neodgm_font, alignment = 'center'}}, global_text_tags)
+  self.sets_text = Text({{text = '[wavy_mid, fg]클래스', font = neodgm_font, alignment = 'center'}}, global_text_tags)
+  self.items_text = Text({{text = '[wavy_mid, fg]아이템', font = neodgm_font, alignment = 'center'}}, global_text_tags)
+  self.ng_text = Text({{text = '[fg]NG+' .. current_new_game_plus, font = neodgm_font, alignment = 'center'}}, global_text_tags)
   local get_elite_str = function(lvl)
     if (lvl-(25*self.loop)) % 6 == 0 or lvl % 25 == 0 then return ' (elite)'
     elseif (lvl-(25*self.loop)) % 3 == 0 then return ' (hard)'
     else return '' end
   end
-  self.level_text = Text({{text = '[fg]Lv.' .. tostring(self.level) .. get_elite_str(self.level), font = pixul_font, alignment = 'center'}}, global_text_tags)
+  self.level_text = Text({{text = '[fg]Lv.' .. tostring(self.level) .. get_elite_str(self.level), font = neodgm_font, alignment = 'center'}}, global_text_tags)
 
   RerollButton{group = self.main, x = 150, y = 18, parent = self}
   GoButton{group = self.main, x = gw - 90, y = gh - 20, parent = self}
   LevelButton{group = self.main, x = gw/2, y = 18, parent = self}
   self.tutorial_button = Button{group = self.main, x = gw/2 + 129, y = 18, button_text = '?', fg_color = 'bg10', bg_color = 'bg', action = function()
     self.in_tutorial = true
-    self.title_text = Text2{group = self.tutorial, x = gw/2, y = 35, lines = {{text = '[fg]WELCOME TO SNKRX!', font = fat_font, alignment = 'center'}}}
-    self.tutorial_text = Text2{group = self.tutorial, x = 228, y = 160, lines = {
-      {text = '[fg]You control a snake of multiple heroes that auto-attack nearby enemies.', font = pixul_font, height_multiplier = 1.2},
-      {text = '[fg]You can steer the snake left or right by pressing [yellow]A/D[fg] or [yellow]left/right arrows[fg].', font = pixul_font, height_multiplier = 2.2},
-      {text = '[fg]Combine the same heroes to level them up:', font = pixul_font, height_multiplier = 1.2},
-      {text = '[fg]At [yellow]Lv.3[fg] heroes unlock special effects.', font = pixul_font, height_multiplier = 2.2},
-      {text = '[fg]Hire heroes of the same classes to unlock class passives:', font = pixul_font, height_multiplier = 1.2},
-      {text = '[fg]Each hero can have between [yellow]1 to 3[fg] classes.', font = pixul_font, height_multiplier = 2.2},
-      {text = '[fg]You gain [yellow]1 interest per 5 gold[fg], up to a maximum of 5.', font = pixul_font, height_multiplier = 1.2},
-      {text = "[fg]This means that saving above [yellow]25 gold[fg] doesn't yield more interest.", font = pixul_font, height_multiplier = 2.2},
-      {text = "[yellow, wavy_mid]Good luck!", font = pixul_font, height_multiplier = 2.2, alignment = 'center'},
+    self.title_text = Text2{group = self.tutorial, x = gw/2, y = 23, lines = {{text = '[fg]WELCOME TO SNKRX!', font = pixelroborobo_font, alignment = 'center'}}}
+    self.tutorial_text = Text2{group = self.tutorial, x = 240, y = 160, lines = {
+      {text = '[fg]적을 자동 공격하는 여러 영웅들로 이루어진 뱀으로 플레이합니다.', font = neodgm_font, height_multiplier = 1.2},
+      {text = '[fg][yellow]A/D[fg]나 [yellow]왼쪽/오른쪽 화살표[fg]를 눌러 뱀을 조종합니다.', font = neodgm_font, height_multiplier = 2.2},
+      {text = '[fg]같은 영웅들을 조합하면 레밸업:', font = neodgm_font, height_multiplier = 1.2},
+      {text = '[fg][yellow]Lv.3[fg]이 되면 영웅은 특별한 능력을 해금합니다.', font = neodgm_font, height_multiplier = 2.2},
+      {text = '[fg]같은 클래스들을 모아 클래스 패시브 능력 해금:', font = neodgm_font, height_multiplier = 1.2},
+      {text = '[fg]각 영웅은 [yellow]1 ~ 3[fg]개 클래스를 가집니다..', font = neodgm_font, height_multiplier = 2.2},
+      {text = '[fg][yellow]5 gold마다 1 이자[fg]를 얻으며 최대 이자는 5입니다.', font = neodgm_font, height_multiplier = 1.2},
+      {text = "[fg][yellow]25 gold[fg] 이상 모으면 추가적인 이자는 없다는 거죠", font = neodgm_font, height_multiplier = 2.2},
+      {text = "[yellow, wavy_mid]행운을 빕니다!", font = neodgm_font, height_multiplier = 2.2, alignment = 'center'},
     }}
 
     self.tutorial_cards = {}
-    table.insert(self.tutorial_cards, TutorialCharacterPart{group = self.tutorial, x = gw/2 + 34, y = gh/2 - 30, character = 'swordsman', level = 1})
-    table.insert(self.tutorial_cards, TutorialCharacterPart{group = self.tutorial, x = gw/2 + 54, y = gh/2 - 30, character = 'swordsman', level = 1})
-    table.insert(self.tutorial_cards, TutorialCharacterPart{group = self.tutorial, x = gw/2 + 74, y = gh/2 - 30, character = 'swordsman', level = 1})
-    table.insert(self.tutorial_cards, TutorialCharacterPart{group = self.tutorial, x = gw/2 + 34, y = gh/2 - 10, character = 'swordsman', level = 2})
-    table.insert(self.tutorial_cards, TutorialCharacterPart{group = self.tutorial, x = gw/2 + 54, y = gh/2 - 10, character = 'swordsman', level = 2})
-    table.insert(self.tutorial_cards, TutorialCharacterPart{group = self.tutorial, x = gw/2 + 74, y = gh/2 - 10, character = 'swordsman', level = 2})
-    table.insert(self.tutorial_cards, TutorialCharacterPart{group = self.tutorial, x = gw/2 + 114, y = gh/2 - 30, character = 'swordsman', level = 2})
-    table.insert(self.tutorial_cards, TutorialCharacterPart{group = self.tutorial, x = gw/2 + 114, y = gh/2 - 10, character = 'swordsman', level = 3})
+    table.insert(self.tutorial_cards, TutorialCharacterPart{group = self.tutorial, x = gw/2 + 114, y = gh/2 - 30, character = 'swordsman', level = 1})
+    table.insert(self.tutorial_cards, TutorialCharacterPart{group = self.tutorial, x = gw/2 + 134, y = gh/2 - 30, character = 'swordsman', level = 1})
+    table.insert(self.tutorial_cards, TutorialCharacterPart{group = self.tutorial, x = gw/2 + 154, y = gh/2 - 30, character = 'swordsman', level = 1})
+    table.insert(self.tutorial_cards, TutorialCharacterPart{group = self.tutorial, x = gw/2 + 114, y = gh/2 - 10, character = 'swordsman', level = 2})
+    table.insert(self.tutorial_cards, TutorialCharacterPart{group = self.tutorial, x = gw/2 + 134, y = gh/2 - 10, character = 'swordsman', level = 2})
+    table.insert(self.tutorial_cards, TutorialCharacterPart{group = self.tutorial, x = gw/2 + 154, y = gh/2 - 10, character = 'swordsman', level = 2})
+    table.insert(self.tutorial_cards, TutorialCharacterPart{group = self.tutorial, x = gw/2 + 194, y = gh/2 - 30, character = 'swordsman', level = 2})
+    table.insert(self.tutorial_cards, TutorialCharacterPart{group = self.tutorial, x = gw/2 + 194, y = gh/2 - 10, character = 'swordsman', level = 3})
     table.insert(self.tutorial_cards, TutorialClassIcon{group = self.tutorial, x = gw/2 + 114, y = gh/2 + 18, class = 'warrior', units = {}})
     table.insert(self.tutorial_cards, TutorialClassIcon{group = self.tutorial, x = gw/2 + 134, y = gh/2 + 18, class = 'warrior', units = {{character = 'swordsman'}, {character = 'barbarian'}, {character = 'juggernaut'}}})
     table.insert(self.tutorial_cards, TutorialClassIcon{group = self.tutorial, x = gw/2 + 154, y = gh/2 + 18, class = 'warrior', units = {{character = 'swordsman'}, {character = 'barbarian'}, {character = 'juggernaut'},
@@ -118,7 +118,7 @@ function BuyScreen:on_enter(from, level, loop, units, passives, shop_level, shop
   end, mouse_enter = function(b)
     b.info_text = InfoText{group = main.current.ui, force_update = true}
     b.info_text:activate({
-      {text = '[fg]guide', font = pixul_font, alignment = 'center'},
+      {text = '[fg]도움말', font = neodgm_font, alignment = 'center'},
     }, nil, nil, nil, nil, 16, 4, nil, 2)
     b.info_text.x, b.info_text.y = b.x, b.y + 20
   end, mouse_exit = function(b)
@@ -154,11 +154,11 @@ function BuyScreen:on_enter(from, level, loop, units, passives, shop_level, shop
       main:add(BuyScreen'buy_screen')
       system.save_run()
       main:go_to('buy_screen', 1, 0, {}, passives, 1, 0)
-    end, text = Text({{text = '[wavy, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']restarting...', font = pixul_font, alignment = 'center'}}, global_text_tags)}
+    end, text = Text({{text = '[wavy, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']restarting...', font = neodgm_font, alignment = 'center'}}, global_text_tags)}
   end, mouse_enter = function(b)
     b.info_text = InfoText{group = main.current.ui, force_update = true}
     b.info_text:activate({
-      {text = '[fg]restart run', font = pixul_font, alignment = 'center'},
+      {text = '[fg]재시작', font = neodgm_font, alignment = 'center'},
     }, nil, nil, nil, nil, 16, 4, nil, 2)
     b.info_text.x, b.info_text.y = b.x, b.y + 20
   end, mouse_exit = function(b)
@@ -244,7 +244,7 @@ function BuyScreen:draw()
     y = math.clamp(y, 40, 40 + (#self.units-1)*19)
     graphics.push(self.unit_grabbed.x, y, 0)
       graphics.rectangle(self.unit_grabbed.x, y, 14, 14, 3, 3, bg[5])
-      graphics.print_centered(self.unit_grabbed.level, pixul_font, self.unit_grabbed.x + 0.5, y + 2, 0, 1, 1, 0, 0, bg[10])
+      graphics.print_centered(self.unit_grabbed.level, neodgm_font, self.unit_grabbed.x + 0.5, y + 2, 0, 1, 1, 0, 0, bg[10])
       for _, part in ipairs(self.unit_grabbed.parts) do
         part:draw(y)
       end
@@ -261,8 +261,8 @@ function BuyScreen:draw()
 
   if self.in_tutorial then
     graphics.rectangle(gw/2, gh/2, 2*gw, 2*gh, nil, nil, modal_transparent_2)
-    arrow:draw(gw/2 + 93, gh/2 - 30, 0, 0.4, 0.35)
-    arrow:draw(gw/2 + 93, gh/2 - 10, 0, 0.4, 0.35)
+    arrow:draw(gw/2 + 173, gh/2 - 30, 0, 0.4, 0.35)
+    arrow:draw(gw/2 + 173, gh/2 - 10, 0, 0.4, 0.35)
   end
   self.tutorial:draw()
 end
@@ -275,14 +275,14 @@ function BuyScreen:buy(character, i)
       if not self.info_text then
         self.info_text = InfoText{group = main.current.ui}
         self.info_text:activate({
-          {text = "[fg]this unit has already reached max level", font = pixul_font, alignment = 'center'},
+          {text = "[fg]this unit has already reached max level", font = neodgm_font, alignment = 'center'},
         }, nil, nil, nil, nil, 16, 4, nil, 2)
         self.info_text.x, self.info_text.y = gw - 140, gh - 20
       end
       self.t:after(2, function() self.info_text:deactivate(); self.info_text.dead = true; self.info_text = nil end, 'info_text')
     else
       gold = gold - character_tiers[character]
-      self.shop_text:set_text{{text = '[wavy_mid, fg]shop [fg]- [fg, nudge_down]gold: [yellow, nudge_down]' .. gold, font = pixul_font, alignment = 'center'}}
+      self.shop_text:set_text{{text = '[wavy_mid, fg]shop [fg]- [fg, nudge_down]gold: [yellow, nudge_down]' .. gold, font = neodgm_font, alignment = 'center'}}
       for _, unit in ipairs(self.units) do
         if unit.character == character then
           if unit.level == 1 then
@@ -315,7 +315,7 @@ function BuyScreen:buy(character, i)
       if not self.info_text then
         self.info_text = InfoText{group = main.current.ui}
         self.info_text:activate({
-          {text = '[fg]maximum number of units [yellow](' .. max_units .. ') [fg]reached', font = pixul_font, alignment = 'center'},
+          {text = '[fg]maximum number of units [yellow](' .. max_units .. ') [fg]reached', font = neodgm_font, alignment = 'center'},
         }, nil, nil, nil, nil, 16, 4, nil, 2)
         self.info_text.x, self.info_text.y = gw - 140, gh - 20
       end
@@ -323,7 +323,7 @@ function BuyScreen:buy(character, i)
     else
       if gold >= character_tiers[character] then
         gold = gold - character_tiers[character]
-        self.shop_text:set_text{{text = '[wavy_mid, fg]shop [fg]- [fg, nudge_down]gold: [yellow, nudge_down]' .. gold, font = pixul_font, alignment = 'center'}}
+        self.shop_text:set_text{{text = '[wavy_mid, fg]shop [fg]- [fg, nudge_down]gold: [yellow, nudge_down]' .. gold, font = neodgm_font, alignment = 'center'}}
         table.insert(self.units, {character = character, level = 1, reserve = {0, 0}})
         bought = true
       end
@@ -336,7 +336,7 @@ end
 
 function BuyScreen:gain_gold(amount)
   gold = gold + amount or 0
-  self.shop_text:set_text{{text = '[wavy_mid, fg]shop [fg]- [fg, nudge_down]gold: [yellow, nudge_down]' .. gold, font = pixul_font, alignment = 'center'}}
+  self.shop_text:set_text{{text = '[wavy_mid, fg]shop [fg]- [fg, nudge_down]gold: [yellow, nudge_down]' .. gold, font = neodgm_font, alignment = 'center'}}
 end
 
 
@@ -406,8 +406,8 @@ SteamFollowButton:implement(GameObject)
 function SteamFollowButton:init(args)
   self:init_game_object(args)
   self.interact_with_mouse = true
-  self.shape = Rectangle(self.x, self.y, pixul_font:get_text_width('follow me on steam!') + 12, pixul_font.h + 4)
-  self.text = Text({{text = '[greenm5]follow me on steam!', font = pixul_font, alignment = 'center'}}, global_text_tags)
+  self.shape = Rectangle(self.x, self.y, neodgm_font:get_text_width('follow me on steam!') + 12, neodgm_font.h + 4)
+  self.text = Text({{text = '[greenm5]follow me on steam!', font = neodgm_font, alignment = 'center'}}, global_text_tags)
 end
 
 
@@ -439,7 +439,7 @@ function SteamFollowButton:on_mouse_enter()
   ui_hover1:play{pitch = random:float(1.3, 1.5), volume = 0.5}
   pop2:play{pitch = random:float(0.95, 1.05), volume = 0.5}
   self.selected = true
-  self.text:set_text{{text = '[fgm5]follow me on steam!', font = pixul_font, alignment = 'center'}}
+  self.text:set_text{{text = '[fgm5]follow me on steam!', font = neodgm_font, alignment = 'center'}}
   self.spring:pull(0.05, 200, 10)
 end
 
@@ -447,7 +447,7 @@ end
 function SteamFollowButton:on_mouse_exit()
   if main.current.in_credits then return end
   love.mouse.setCursor()
-  self.text:set_text{{text = '[greenm5]follow me on steam!', font = pixul_font, alignment = 'center'}}
+  self.text:set_text{{text = '[greenm5]follow me on steam!', font = neodgm_font, alignment = 'center'}}
   self.selected = false
 end
 
@@ -461,10 +461,10 @@ function WishlistButton:init(args)
   self.interact_with_mouse = true
   if self.w_to_wishlist then
     self.shape = Rectangle(self.x, self.y, 85, 18)
-    self.text = Text({{text = '[bg10]w to wishlist', font = pixul_font, alignment = 'center'}}, global_text_tags)
+    self.text = Text({{text = '[bg10]w to wishlist', font = neodgm_font, alignment = 'center'}}, global_text_tags)
   else
     self.shape = Rectangle(self.x, self.y, 110, 18)
-    self.text = Text({{text = '[bg10]wishlist on steam', font = pixul_font, alignment = 'center'}}, global_text_tags)
+    self.text = Text({{text = '[bg10]wishlist on steam', font = neodgm_font, alignment = 'center'}}, global_text_tags)
   end
 end
 
@@ -495,9 +495,9 @@ function WishlistButton:on_mouse_enter()
   pop2:play{pitch = random:float(0.95, 1.05), volume = 0.5}
   self.selected = true
   if self.w_to_wishlist then
-    self.text:set_text{{text = '[fgm5]w to wishlist', font = pixul_font, alignment = 'center'}}
+    self.text:set_text{{text = '[fgm5]w to wishlist', font = neodgm_font, alignment = 'center'}}
   else
-    self.text:set_text{{text = '[fgm5]wishlist on steam', font = pixul_font, alignment = 'center'}}
+    self.text:set_text{{text = '[fgm5]wishlist on steam', font = neodgm_font, alignment = 'center'}}
   end
   self.spring:pull(0.2, 200, 10)
 end
@@ -505,9 +505,9 @@ end
 
 function WishlistButton:on_mouse_exit()
   if self.w_to_wishlist then
-    self.text:set_text{{text = '[bg10]w to wishlist', font = pixul_font, alignment = 'center'}}
+    self.text:set_text{{text = '[bg10]w to wishlist', font = neodgm_font, alignment = 'center'}}
   else
-    self.text:set_text{{text = '[bg10]wishlist on steam', font = pixul_font, alignment = 'center'}}
+    self.text:set_text{{text = '[bg10]wishlist on steam', font = neodgm_font, alignment = 'center'}}
   end
   self.selected = false
 end
@@ -519,9 +519,9 @@ RestartButton = Object:extend()
 RestartButton:implement(GameObject)
 function RestartButton:init(args)
   self:init_game_object(args)
-  self.shape = Rectangle(self.x, self.y, pixul_font:get_text_width('restart') + 4, pixul_font.h + 4)
+  self.shape = Rectangle(self.x, self.y, neodgm_font:get_text_width('restart') + 4, neodgm_font.h + 4)
   self.interact_with_mouse = true
-  self.text = Text({{text = '[bg10]NG+' .. tostring(current_new_game_plus), font = pixul_font, alignment = 'center'}}, global_text_tags)
+  self.text = Text({{text = '[bg10]NG+' .. tostring(current_new_game_plus), font = neodgm_font, alignment = 'center'}}, global_text_tags)
 end
 
 
@@ -555,7 +555,7 @@ function RestartButton:update(dt)
       main:add(BuyScreen'buy_screen')
       system.save_run()
       main:go_to('buy_screen', 1, 0, {}, passives, 1, 0)
-    end, text = Text({{text = '[wavy, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']restarting...', font = pixul_font, alignment = 'center'}}, global_text_tags)}
+    end, text = Text({{text = '[wavy, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']restarting...', font = neodgm_font, alignment = 'center'}}, global_text_tags)}
   end
 end
 
@@ -573,14 +573,14 @@ function RestartButton:on_mouse_enter()
   ui_hover1:play{pitch = random:float(1.3, 1.5), volume = 0.5}
   pop2:play{pitch = random:float(0.95, 1.05), volume = 0.5}
   self.selected = true
-  self.text:set_text{{text = '[fgm5]NG+' .. tostring(current_new_game_plus), font = pixul_font, alignment = 'center'}}
+  self.text:set_text{{text = '[fgm5]NG+' .. tostring(current_new_game_plus), font = neodgm_font, alignment = 'center'}}
   self.spring:pull(0.2, 200, 10)
 end
 
 
 function RestartButton:on_mouse_exit()
   if main.current.in_credits then return end
-  self.text:set_text{{text = '[bg10]NG+' .. tostring(current_new_game_plus), font = pixul_font, alignment = 'center'}}
+  self.text:set_text{{text = '[bg10]NG+' .. tostring(current_new_game_plus), font = neodgm_font, alignment = 'center'}}
   self.selected = false
 end
 
@@ -591,9 +591,9 @@ Button = Object:extend()
 Button:implement(GameObject)
 function Button:init(args)
   self:init_game_object(args)
-  self.shape = Rectangle(self.x, self.y, args.w or (pixul_font:get_text_width(self.button_text) + 8), pixul_font.h + 4)
+  self.shape = Rectangle(self.x, self.y, args.w or (neodgm_font:get_text_width(self.button_text) + 8), neodgm_font.h + 4)
   self.interact_with_mouse = true
-  self.text = Text({{text = '[' .. self.fg_color .. ']' .. self.button_text, font = pixul_font, alignment = 'center'}}, global_text_tags)
+  self.text = Text({{text = '[' .. self.fg_color .. ']' .. self.button_text, font = neodgm_font, alignment = 'center'}}, global_text_tags)
 end
 
 
@@ -651,7 +651,7 @@ function Button:on_mouse_enter()
   ui_hover1:play{pitch = random:float(1.3, 1.5), volume = 0.5}
   pop2:play{pitch = random:float(0.95, 1.05), volume = 0.5}
   self.selected = true
-  self.text:set_text{{text = '[fgm5]' .. self.button_text, font = pixul_font, alignment = 'center'}}
+  self.text:set_text{{text = '[fgm5]' .. self.button_text, font = neodgm_font, alignment = 'center'}}
   self.spring:pull(0.2, 200, 10)
   if self.mouse_enter then self:mouse_enter() end
 end
@@ -659,7 +659,7 @@ end
 
 function Button:on_mouse_exit()
   if main.current.in_credits and not self.credits_button then return end
-  self.text:set_text{{text = '[' .. self.fg_color .. ']' .. self.button_text, font = pixul_font, alignment = 'center'}}
+  self.text:set_text{{text = '[' .. self.fg_color .. ']' .. self.button_text, font = neodgm_font, alignment = 'center'}}
   self.selected = false
   if self.mouse_exit then self:mouse_exit() end
 end
@@ -667,7 +667,7 @@ end
 
 function Button:set_text(text)
   self.button_text = text
-  self.text:set_text{{text = '[' .. self.fg_color .. ']' .. self.button_text, font = pixul_font, alignment = 'center'}}
+  self.text:set_text{{text = '[' .. self.fg_color .. ']' .. self.button_text, font = neodgm_font, alignment = 'center'}}
   self.spring:pull(0.2, 200, 10)
 end
 
@@ -678,9 +678,9 @@ GoButton = Object:extend()
 GoButton:implement(GameObject)
 function GoButton:init(args)
   self:init_game_object(args)
-  self.shape = Rectangle(self.x, self.y, 28, 18)
+  self.shape = Rectangle(self.x, self.y, 36, 18)
   self.interact_with_mouse = true
-  self.text = Text({{text = '[greenm5]GO!', font = pixul_font, alignment = 'center'}}, global_text_tags)
+  self.text = Text({{text = '[greenm5]시작!', font = neodgm_font, alignment = 'center'}}, global_text_tags)
 end
 
 
@@ -693,7 +693,7 @@ function GoButton:update(dt)
         error1:play{pitch = random:float(0.95, 1.05), volume = 0.5}
         self.info_text = InfoText{group = main.current.ui}
         self.info_text:activate({
-          {text = '[fg]cannot start the round with [yellow]0 [fg]units', font = pixul_font, alignment = 'center'},
+          {text = '[fg]cannot start the round with [yellow]0 [fg]units', font = neodgm_font, alignment = 'center'},
         }, nil, nil, nil, nil, 16, 4, nil, 2)
         self.info_text.x, self.info_text.y = gw/2, gh/2 + 10
       end
@@ -711,7 +711,7 @@ function GoButton:update(dt)
       TransitionEffect{group = main.transitions, x = self.x, y = self.y, color = state.dark_transitions and bg[-2] or character_colors[random:table(self.parent.units).character], transition_action = function()
         main:add(Arena'arena')
         main:go_to('arena', self.parent.level, self.parent.loop, self.parent.units, self.parent.passives, self.parent.shop_level, self.parent.shop_xp, self.parent.locked)
-      end, text = Text({{text = '[wavy, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']level ' .. tostring(self.parent.level) .. '/' .. tostring(25*(self.parent.loop+1)), font = pixul_font, alignment = 'center'}}, global_text_tags)}
+      end, text = Text({{text = '[wavy, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']level ' .. tostring(self.parent.level) .. '/' .. tostring(25*(self.parent.loop+1)), font = neodgm_font, alignment = 'center'}}, global_text_tags)}
     end
 
     if input.enter.pressed then self.selected = false end
@@ -731,13 +731,13 @@ function GoButton:on_mouse_enter()
   ui_hover1:play{pitch = random:float(1.3, 1.5), volume = 0.5}
   pop2:play{pitch = random:float(0.95, 1.05), volume = 0.5}
   self.selected = true
-  self.text:set_text{{text = '[fgm5]GO!', font = pixul_font, alignment = 'center'}}
+  self.text:set_text{{text = '[fgm5]시작!', font = neodgm_font, alignment = 'center'}}
   self.spring:pull(0.2, 200, 10)
 end
 
 
 function GoButton:on_mouse_exit()
-  self.text:set_text{{text = '[greenm5]GO!', font = pixul_font, alignment = 'center'}}
+  self.text:set_text{{text = '[greenm5]시작!', font = neodgm_font, alignment = 'center'}}
   self.selected = false
 end
 
@@ -750,8 +750,8 @@ function LockButton:init(args)
   self.interact_with_mouse = true
   if self.parent.locked then self.shape.w = 44
   else self.shape.w = 32 end
-  if self.parent.locked then self.text = Text({{text = '[fgm5]' .. tostring(self.parent.locked and 'unlock' or 'lock'), font = pixul_font, alignment = 'center'}}, global_text_tags)
-  else self.text = Text({{text = '[bg10]' .. tostring(self.parent.locked and 'unlock' or 'lock'), font = pixul_font, alignment = 'center'}}, global_text_tags) end
+  if self.parent.locked then self.text = Text({{text = '[fgm5]' .. tostring(self.parent.locked and '해제' or '잠금'), font = neodgm_font, alignment = 'center'}}, global_text_tags)
+  else self.text = Text({{text = '[bg10]' .. tostring(self.parent.locked and '해제' or '잠금'), font = neodgm_font, alignment = 'center'}}, global_text_tags) end
 end
 
 
@@ -768,7 +768,7 @@ function LockButton:update(dt)
     ui_switch2:play{pitch = random:float(0.95, 1.05), volume = 0.5}
     self.selected = true
     self.spring:pull(0.2, 200, 10)
-    self.text:set_text{{text = '[fgm5]' .. tostring(self.parent.locked and 'unlock' or 'lock'), font = pixul_font, alignment = 'center'}}
+    self.text:set_text{{text = '[fgm5]' .. tostring(self.parent.locked and '해제' or '잠금'), font = neodgm_font, alignment = 'center'}}
     if self.parent.locked then self.shape.w = 44
     else self.shape.w = 32 end
   end
@@ -787,13 +787,13 @@ function LockButton:on_mouse_enter()
   ui_hover1:play{pitch = random:float(1.3, 1.5), volume = 0.5}
   pop2:play{pitch = random:float(0.95, 1.05), volume = 0.5}
   self.selected = true
-  self.text:set_text{{text = '[fgm5]' .. tostring(self.parent.locked and 'unlock' or 'lock'), font = pixul_font, alignment = 'center'}}
+  self.text:set_text{{text = '[fgm5]' .. tostring(self.parent.locked and '해제' or '잠금'), font = neodgm_font, alignment = 'center'}}
   self.spring:pull(0.2, 200, 10)
 end
 
 
 function LockButton:on_mouse_exit()
-  if not self.parent.locked then self.text:set_text{{text = '[bg10]' .. tostring(self.parent.locked and 'unlock' or 'lock'), font = pixul_font, alignment = 'center'}} end
+  if not self.parent.locked then self.text:set_text{{text = '[bg10]' .. tostring(self.parent.locked and '해제' or '잠금'), font = neodgm_font, alignment = 'center'}} end
   self.selected = false
 end
 
@@ -806,7 +806,7 @@ function LevelButton:init(args)
   self:init_game_object(args)
   self.interact_with_mouse = true
   self.shape = Rectangle(self.x, self.y, 16, 16)
-  self.text = Text({{text = '[bg10]' .. tostring(self.parent.shop_level), font = pixul_font, alignment = 'center'}}, global_text_tags)
+  self.text = Text({{text = '[bg10]' .. tostring(self.parent.shop_level), font = neodgm_font, alignment = 'center'}}, global_text_tags)
   self.shop_xp = self.parent.shop_xp or 0
   self.max_xp = (self.parent.shop_level == 1 and 3) or (self.parent.shop_level == 2 and 4) or (self.parent.shop_level == 3 and 5) or (self.parent.shop_level == 4 and 6) or (self.parent.shop_level == 5 and 0)
 end
@@ -824,7 +824,7 @@ function LevelButton:update(dt)
       if not self.info_text_2 then
         self.info_text_2 = InfoText{group = main.current.ui}
         self.info_text_2:activate({
-          {text = '[fg]not enough gold', font = pixul_font, alignment = 'center'},
+          {text = '[fg]gold가 부족합니다.', font = neodgm_font, alignment = 'center'},
         }, nil, nil, nil, nil, 16, 4, nil, 2)
         self.info_text_2.x, self.info_text_2.y = gw/2, gh/2 + 30
       end
@@ -842,8 +842,8 @@ function LevelButton:update(dt)
       self.selected = true
       self.spring:pull(0.2, 200, 10)
       gold = gold - 5
-      self.parent.shop_text:set_text{{text = '[wavy_mid, fg]shop [fg]- [fg, nudge_down]gold: [yellow, nudge_down]' .. gold, font = pixul_font, alignment = 'center'}}
-      self.text = Text({{text = '[bg10]' .. tostring(self.parent.shop_level), font = pixul_font, alignment = 'center'}}, global_text_tags)
+      self.parent.shop_text:set_text{{text = '[wavy_mid, fg]shop [fg]- [fg, nudge_down]gold: [yellow, nudge_down]' .. gold, font = neodgm_font, alignment = 'center'}}
+      self.text = Text({{text = '[bg10]' .. tostring(self.parent.shop_level), font = neodgm_font, alignment = 'center'}}, global_text_tags)
       system.save_run(self.parent.level, self.parent.loop, gold, self.parent.units, self.parent.passives, self.parent.shop_level, self.parent.shop_xp, run_passive_pool, locked_state)
     end
   end
@@ -857,7 +857,7 @@ function LevelButton:update(dt)
       if not self.info_text_2 then
         self.info_text_2 = InfoText{group = main.current.ui}
         self.info_text_2:activate({
-          {text = '[fg]not enough gold', font = pixul_font, alignment = 'center'},
+          {text = '[fg]gold가 부족합니다.', font = neodgm_font, alignment = 'center'},
         }, nil, nil, nil, nil, 16, 4, nil, 2)
         self.info_text_2.x, self.info_text_2.y = gw/2, gh/2 + 30
       end
@@ -872,8 +872,8 @@ function LevelButton:update(dt)
       self.selected = true
       self.spring:pull(0.2, 200, 10)
       gold = gold - 10
-      self.parent.shop_text:set_text{{text = '[wavy_mid, fg]shop [fg]- [fg, nudge_down]gold: [yellow, nudge_down]' .. gold, font = pixul_font, alignment = 'center'}}
-      self.text = Text({{text = '[bg10]' .. tostring(self.parent.shop_level), font = pixul_font, alignment = 'center'}}, global_text_tags)
+      self.parent.shop_text:set_text{{text = '[wavy_mid, fg]shop [fg]- [fg, nudge_down]gold: [yellow, nudge_down]' .. gold, font = neodgm_font, alignment = 'center'}}
+      self.text = Text({{text = '[bg10]' .. tostring(self.parent.shop_level), font = neodgm_font, alignment = 'center'}}, global_text_tags)
       system.save_run(self.parent.level, self.parent.loop, gold, self.parent.units, self.parent.passives, self.parent.shop_level, self.parent.shop_xp, run_passive_pool, locked_state)
     end
   end
@@ -907,13 +907,13 @@ function LevelButton:create_info_text()
     local t41, t42 = get_shop_odds(self.parent.shop_level, 4), get_shop_odds(self.parent.shop_level+1, 4)
     self.info_text = InfoText{group = main.current.ui}
     self.info_text:activate({
-      {text = '[yellow]Lv.' .. self.parent.shop_level .. '[fg] shop, XP: [yellow]' .. self.shop_xp .. '/' .. self.max_xp .. '[fg], +1 XP cost: [yellow]5', font = pixul_font, alignment = 'center', height_multiplier = 1.5},
-      {text = '[bg10]chances of units appearing on the shop', font = pixul_font, alignment = 'center', height_multiplier = 1.25},
-      {text = '[yellow]current shop level                  [fgm10]next shop level', font = pixul_font, alignment = 'left', height_multiplier = 1.25},
-      {text = '[fg]tier 1: ' .. t11 .. '%' .. tostring(t11 < 10 and '  ' or '') .. '                                 [fgm8]tier 1: ' .. t12 .. '%', font = pixul_font, alignment = 'left', height_multiplier = 1.25},
-      {text = '[green]tier 2: ' .. t21 .. '%' .. tostring(t21 < 10 and '  ' or '') .. '                                 [fgm6]tier 2: ' .. t22 .. '%', font = pixul_font, alignment = 'left', height_multiplier = 1.25},
-      {text = '[blue]tier 3: ' .. t31 .. '%' .. tostring(t31 < 10 and '  ' or '') .. '                                 [fgm4]tier 3: ' .. t32 .. '%', font = pixul_font, alignment = 'left', height_multiplier = 1.25},
-      {text = '[purple]tier 4: ' .. t41 .. '%' .. tostring(t41 < 10 and '  ' or '') .. '                                 [fgm2]tier 4: ' .. t42 .. '%', font = pixul_font, alignment = 'left', height_multiplier = 1.25},
+      {text = '[yellow]Lv.' .. self.parent.shop_level .. '[fg] 상점, XP: [yellow]' .. self.shop_xp .. '/' .. self.max_xp .. '[fg], +1 XP 비용: [yellow]5', font = neodgm_font, alignment = 'center', height_multiplier = 1.5},
+      {text = '[bg10]상점에 영웅이 등장할 확률', font = neodgm_font, alignment = 'center', height_multiplier = 1.25},
+      {text = '[yellow]현재 상점 레밸                  [fgm10]다음 상점 레밸', font = neodgm_font, alignment = 'left', height_multiplier = 1.25},
+      {text = '[fg]1 티어: ' .. t11 .. '%' .. tostring(t11 < 10 and '  ' or '') .. '                                 [fgm8]1 티어: ' .. t12 .. '%', font = neodgm_font, alignment = 'left', height_multiplier = 1.25},
+      {text = '[green]2 티어: ' .. t21 .. '%' .. tostring(t21 < 10 and '  ' or '') .. '                                 [fgm6]2 티어: ' .. t22 .. '%', font = neodgm_font, alignment = 'left', height_multiplier = 1.25},
+      {text = '[blue]3 티어: ' .. t31 .. '%' .. tostring(t31 < 10 and '  ' or '') .. '                                 [fgm4]3 티어: ' .. t32 .. '%', font = neodgm_font, alignment = 'left', height_multiplier = 1.25},
+      {text = '[purple]4 티어: ' .. t41 .. '%' .. tostring(t41 < 10 and '  ' or '') .. '                                 [fgm2]4 티어: ' .. t42 .. '%', font = neodgm_font, alignment = 'left', height_multiplier = 1.25},
     }, nil, nil, nil, nil, 16, 4, nil, 2)
     self.info_text.x, self.info_text.y = gw/2, gh/2 - 45
   elseif self.parent.shop_level == 5 then
@@ -923,13 +923,13 @@ function LevelButton:create_info_text()
     local t41 = get_shop_odds(self.parent.shop_level, 4)
     self.info_text = InfoText{group = main.current.ui}
     self.info_text:activate({
-      {text = '[yellow]Lv.' .. self.parent.shop_level .. '[fg] shop', font = pixul_font, alignment = 'center', height_multiplier = 1.5},
-      {text = '[bg10]chances of units appearing on the shop', font = pixul_font, alignment = 'center', height_multiplier = 1.25},
-      {text = '[yellow]current shop level', font = pixul_font, alignment = 'left', height_multiplier = 1.25},
-      {text = '[fg]tier 1: ' .. t11 .. '%', font = pixul_font, alignment = 'left', height_multiplier = 1.25},
-      {text = '[green]tier 2: ' .. t21 .. '%', font = pixul_font, alignment = 'left', height_multiplier = 1.25},
-      {text = '[blue]tier 3: ' .. t31 .. '%', font = pixul_font, alignment = 'left', height_multiplier = 1.25},
-      {text = '[purple]tier 4: ' .. t41 .. '%', font = pixul_font, alignment = 'left', height_multiplier = 1.25},
+      {text = '[yellow]Lv.' .. self.parent.shop_level .. '[fg] shop', font = neodgm_font, alignment = 'center', height_multiplier = 1.5},
+      {text = '[bg10]chances of units appearing on the shop', font = neodgm_font, alignment = 'center', height_multiplier = 1.25},
+      {text = '[yellow]current shop level', font = neodgm_font, alignment = 'left', height_multiplier = 1.25},
+      {text = '[fg]tier 1: ' .. t11 .. '%', font = neodgm_font, alignment = 'left', height_multiplier = 1.25},
+      {text = '[green]tier 2: ' .. t21 .. '%', font = neodgm_font, alignment = 'left', height_multiplier = 1.25},
+      {text = '[blue]tier 3: ' .. t31 .. '%', font = neodgm_font, alignment = 'left', height_multiplier = 1.25},
+      {text = '[purple]tier 4: ' .. t41 .. '%', font = neodgm_font, alignment = 'left', height_multiplier = 1.25},
     }, nil, nil, nil, nil, 16, 4, nil, 2)
     self.info_text.x, self.info_text.y = gw/2, gh/2 - 45
   end
@@ -940,14 +940,14 @@ function LevelButton:on_mouse_enter()
   ui_hover1:play{pitch = random:float(1.3, 1.5), volume = 0.5}
   pop2:play{pitch = random:float(0.95, 1.05), volume = 0.5}
   self.selected = true
-  self.text:set_text{{text = '[fgm5]' .. tostring(self.parent.shop_level), font = pixul_font, alignment = 'center'}}
+  self.text:set_text{{text = '[fgm5]' .. tostring(self.parent.shop_level), font = neodgm_font, alignment = 'center'}}
   self.spring:pull(0.2, 200, 10)
   self:create_info_text()
 end
 
 
 function LevelButton:on_mouse_exit()
-  self.text:set_text{{text = '[bg10]' .. tostring(self.parent.shop_level), font = pixul_font, alignment = 'center'}}
+  self.text:set_text{{text = '[bg10]' .. tostring(self.parent.shop_level), font = neodgm_font, alignment = 'center'}}
   self.selected = false
   if self.info_text then
     self.info_text:deactivate()
@@ -966,7 +966,7 @@ function RerollButton:init(args)
   self.interact_with_mouse = true
   if self.parent:is(BuyScreen) then
     self.shape = Rectangle(self.x, self.y, 54, 16)
-    self.text = Text({{text = '[bg10]reroll: [yellow]2', font = pixul_font, alignment = 'center'}}, global_text_tags)
+    self.text = Text({{text = '[bg10]리롤: [yellow]2', font = neodgm_font, alignment = 'center'}}, global_text_tags)
   elseif self.parent:is(Arena) then
     self.shape = Rectangle(self.x, self.y, 60, 16)
     local merchant
@@ -978,9 +978,9 @@ function RerollButton:init(args)
     end
     if self.parent.level == 3 or (merchant and merchant.level == 3) then
       self.free_reroll = true
-      self.text = Text({{text = '[bg10]reroll: [yellow]0', font = pixul_font, alignment = 'center'}}, global_text_tags)
+      self.text = Text({{text = '[bg10]리롤: [yellow]0', font = neodgm_font, alignment = 'center'}}, global_text_tags)
     else
-      self.text = Text({{text = '[bg10]reroll: [yellow]5', font = pixul_font, alignment = 'center'}}, global_text_tags)
+      self.text = Text({{text = '[bg10]리롤: [yellow]5', font = neodgm_font, alignment = 'center'}}, global_text_tags)
     end
   end
 end
@@ -998,7 +998,7 @@ function RerollButton:update(dt)
         if not self.info_text then
           self.info_text = InfoText{group = main.current.ui}
           self.info_text:activate({
-            {text = '[fg]not enough gold', font = pixul_font, alignment = 'center'},
+            {text = '[fg]not enough gold', font = neodgm_font, alignment = 'center'},
           }, nil, nil, nil, nil, 16, 4, nil, 2)
           self.info_text.x, self.info_text.y = gw/2, gh/2 + 10
         end
@@ -1009,7 +1009,7 @@ function RerollButton:update(dt)
         self.selected = true
         self.spring:pull(0.2, 200, 10)
         gold = gold - 2
-        self.parent.shop_text:set_text{{text = '[wavy_mid, fg]shop [fg]- [fg, nudge_down]gold: [yellow, nudge_down]' .. gold, font = pixul_font, alignment = 'center'}}
+        self.parent.shop_text:set_text{{text = '[wavy_mid, fg]shop [fg]- [fg, nudge_down]gold: [yellow, nudge_down]' .. gold, font = neodgm_font, alignment = 'center'}}
         system.save_run(self.parent.level, self.parent.loop, gold, self.parent.units, self.parent.passives, self.parent.shop_level, self.parent.shop_xp, run_passive_pool, locked_state)
       end
     elseif self.parent:is(Arena) then
@@ -1020,7 +1020,7 @@ function RerollButton:update(dt)
         if not self.info_text then
           self.info_text = InfoText{group = main.current.ui, force_update = true}
           self.info_text:activate({
-            {text = '[fg]not enough gold', font = pixul_font, alignment = 'center'},
+            {text = '[fg]not enough gold', font = neodgm_font, alignment = 'center'},
           }, nil, nil, nil, nil, 16, 4, nil, 2)
           self.info_text.x, self.info_text.y = gw/2, gh/2 + 10
         end
@@ -1031,9 +1031,9 @@ function RerollButton:update(dt)
         self.selected = true
         self.spring:pull(0.2, 200, 10)
         if not self.free_reroll then gold = gold - 5 end
-        self.parent.shop_text:set_text{{text = '[fg, nudge_down]gold: [yellow, nudge_down]' .. gold, font = pixul_font, alignment = 'center'}}
+        self.parent.shop_text:set_text{{text = '[fg, nudge_down]gold: [yellow, nudge_down]' .. gold, font = neodgm_font, alignment = 'center'}}
         self.free_reroll = false
-        self.text = Text({{text = '[bg10]reroll: [yellow]5', font = pixul_font, alignment = 'center'}}, global_text_tags)
+        self.text = Text({{text = '[bg10]리롤: [yellow]5', font = neodgm_font, alignment = 'center'}}, global_text_tags)
       end
     end
 
@@ -1059,12 +1059,12 @@ function RerollButton:on_mouse_enter()
   pop2:play{pitch = random:float(0.95, 1.05), volume = 0.5}
   self.selected = true
   if self.parent:is(BuyScreen) then
-    self.text:set_text{{text = '[fgm5]reroll: 2', font = pixul_font, alignment = 'center'}}
+    self.text:set_text{{text = '[fgm5]리롤: 2', font = neodgm_font, alignment = 'center'}}
   elseif self.parent:is(Arena) then
     if self.free_reroll then
-      self.text:set_text{{text = '[fgm5]reroll: 0', font = pixul_font, alignment = 'center'}}
+      self.text:set_text{{text = '[fgm5]리롤: 0', font = neodgm_font, alignment = 'center'}}
     else
-      self.text:set_text{{text = '[fgm5]reroll: 5', font = pixul_font, alignment = 'center'}}
+      self.text:set_text{{text = '[fgm5]리롤: 5', font = neodgm_font, alignment = 'center'}}
     end
   end
   self.spring:pull(0.2, 200, 10)
@@ -1073,12 +1073,12 @@ end
 
 function RerollButton:on_mouse_exit()
   if self.parent:is(BuyScreen) then
-    self.text:set_text{{text = '[bg10]reroll: [yellow]2', font = pixul_font, alignment = 'center'}}
+    self.text:set_text{{text = '[bg10]리롤: [yellow]2', font = neodgm_font, alignment = 'center'}}
   elseif self.parent:is(Arena) then
     if self.free_reroll then
-      self.text:set_text{{text = '[fgm5]reroll: [yellow]0', font = pixul_font, alignment = 'center'}}
+      self.text:set_text{{text = '[fgm5]리롤: [yellow]0', font = neodgm_font, alignment = 'center'}}
     else
-      self.text:set_text{{text = '[fgm5]reroll: [yellow]5', font = pixul_font, alignment = 'center'}}
+      self.text:set_text{{text = '[fgm5]리롤: [yellow]5', font = neodgm_font, alignment = 'center'}}
     end
   end
   self.selected = false
@@ -1105,7 +1105,7 @@ end
 function TutorialCharacterPart:draw()
   graphics.push(self.x, self.y, 0, self.sx*self.spring.x, self.sy*self.spring.x)
     graphics.rectangle(self.x, self.y, 14, 14, 3, 3, self.highlighted and fg[0] or character_colors[self.character])
-    graphics.print_centered(self.level, pixul_font, self.x + 0.5, self.y + 2, 0, 1, 1, 0, 0, self.highlighted and fg[-5] or _G[character_color_strings[self.character]][-5])
+    graphics.print_centered(self.level, neodgm_font, self.x + 0.5, self.y + 2, 0, 1, 1, 0, 0, self.highlighted and fg[-5] or _G[character_color_strings[self.character]][-5])
   graphics.pop()
 end
 
@@ -1117,12 +1117,12 @@ function TutorialCharacterPart:on_mouse_enter()
   self.info_text = InfoText{group = main.current.tutorial}
   self.info_text:activate({
     {text = '[' .. character_color_strings[self.character] .. ']' .. self.character:capitalize() .. '[fg] - [yellow]Lv.' .. self.level,
-    font = pixul_font, alignment = 'center', height_multiplier = 1.25},
-    {text = '[fg]Classes: ' .. character_class_strings[self.character], font = pixul_font, alignment = 'center', height_multiplier = 1.25},
-    {text = character_descriptions[self.character](self.level), font = pixul_font, alignment = 'center', height_multiplier = 2},
+    font = neodgm_font, alignment = 'center', height_multiplier = 1.25},
+    {text = '[fg]Classes: ' .. character_class_strings[self.character], font = neodgm_font, alignment = 'center', height_multiplier = 1.25},
+    {text = character_descriptions[self.character](self.level), font = neodgm_font, alignment = 'center', height_multiplier = 2},
     {text = '[' .. (self.level == 3 and 'yellow' or 'light_bg') .. ']Lv.3 [' .. (self.level == 3 and 'fg' or 'light_bg') .. ']Effect - ' .. 
-      (self.level == 3 and character_effect_names[self.character] or character_effect_names_gray[self.character]), font = pixul_font, alignment = 'center', height_multiplier = 1.25},
-    {text = (self.level == 3 and character_effect_descriptions[self.character]() or character_effect_descriptions_gray[self.character]()), font = pixul_font, alignment = 'center'},
+      (self.level == 3 and character_effect_names[self.character] or character_effect_names_gray[self.character]), font = neodgm_font, alignment = 'center', height_multiplier = 1.25},
+    {text = (self.level == 3 and character_effect_descriptions[self.character]() or character_effect_descriptions_gray[self.character]()), font = neodgm_font, alignment = 'center'},
   }, nil, nil, nil, nil, 16, 4, nil, 2)
   self.info_text.x, self.info_text.y = gw/2, gh/2 + gh/4 - 12
 end
@@ -1216,7 +1216,7 @@ function CharacterPart:update(dt)
       self:die()
       self.parent:set_party_and_sets()
       self.parent:refresh_cards()
-      self.parent.party_text:set_text({{text = '[wavy_mid, fg]party ' .. tostring(#self.parent.units) .. '/' .. tostring(max_units), font = pixul_font, alignment = 'center'}})
+      self.parent.party_text:set_text({{text = '[wavy_mid, fg]party ' .. tostring(#self.parent.units) .. '/' .. tostring(max_units), font = neodgm_font, alignment = 'center'}})
       system.save_run(self.parent.level, self.parent.loop, gold, self.parent.units, self.parent.passives, self.parent.shop_level, self.parent.shop_xp, run_passive_pool, locked_state)
     else
       self.parent.parent:gain_gold(self:get_sale_price())
@@ -1244,11 +1244,11 @@ function CharacterPart:draw(y)
       ]]--
     else
       graphics.rectangle(self.x, self.y, 14, 14, 3, 3, self.highlighted and bg[10] or character_colors[self.character])
-      graphics.print_centered(self.level, pixul_font, self.x + 0.5, self.y + 2, 0, 1, 1, 0, 0, self.highlighted and bg[5] or _G[character_color_strings[self.character]][-5])
+      graphics.print_centered(self.level, neodgm_font, self.x + 0.5, self.y + 2, 0, 1, 1, 0, 0, self.highlighted and bg[5] or _G[character_color_strings[self.character]][-5])
     end
     if y then
       graphics.rectangle(self.x, y, 14, 14, 3, 3, bg[5])
-      graphics.print_centered(self.level, pixul_font, self.x + 0.5, y + 2, 0, 1, 1, 0, 0, bg[10])
+      graphics.print_centered(self.level, neodgm_font, self.x + 0.5, y + 2, 0, 1, 1, 0, 0, bg[10])
     end
   graphics.pop()
 end
@@ -1261,12 +1261,12 @@ function CharacterPart:on_mouse_enter()
   self.info_text = InfoText{group = main.current.ui, force_update = self.force_update}
   self.info_text:activate({
     {text = '[' .. character_color_strings[self.character] .. ']' .. self.character:capitalize() .. '[fg] - [yellow]Lv.' .. self.level .. '[fg], tier [yellow]' .. character_tiers[self.character] .. '[fg] - sells for [yellow]' ..
-      self:get_sale_price(), font = pixul_font, alignment = 'center', height_multiplier = 1.25},
-    {text = '[fg]Classes: ' .. character_class_strings[self.character], font = pixul_font, alignment = 'center', height_multiplier = 1.25},
-    {text = character_descriptions[self.character](self.level), font = pixul_font, alignment = 'center', height_multiplier = 2},
+      self:get_sale_price(), font = neodgm_font, alignment = 'center', height_multiplier = 1.25},
+    {text = '[fg]Classes: ' .. character_class_strings[self.character], font = neodgm_font, alignment = 'center', height_multiplier = 1.25},
+    {text = character_descriptions[self.character](self.level), font = neodgm_font, alignment = 'center', height_multiplier = 2},
     {text = '[' .. (self.level == 3 and 'yellow' or 'light_bg') .. ']Lv.3 [' .. (self.level == 3 and 'fg' or 'light_bg') .. ']Effect - ' .. 
-      (self.level == 3 and character_effect_names[self.character] or character_effect_names_gray[self.character]), font = pixul_font, alignment = 'center', height_multiplier = 1.25},
-    {text = (self.level == 3 and character_effect_descriptions[self.character]() or character_effect_descriptions_gray[self.character]()), font = pixul_font, alignment = 'center'},
+      (self.level == 3 and character_effect_names[self.character] or character_effect_names_gray[self.character]), font = neodgm_font, alignment = 'center', height_multiplier = 1.25},
+    {text = (self.level == 3 and character_effect_descriptions[self.character]() or character_effect_descriptions_gray[self.character]()), font = neodgm_font, alignment = 'center'},
   }, nil, nil, nil, nil, 16, 4, nil, 2)
   self.info_text.x, self.info_text.y = gw/2, gh/2 + 10
 
@@ -1355,7 +1355,7 @@ function PassiveCard:init(args)
   self:init_game_object(args)
   self.shape = Rectangle(self.x, self.y, self.w, self.h)
   self.interact_with_mouse = true
-  self.passive_name =  Text({{text = '[fg, wavy_mid]' .. passive_names[self.passive], font = pixul_font, alignment = 'center'}}, global_text_tags)
+  self.passive_name =  Text({{text = '[fg, wavy_mid]' .. passive_names[self.passive], font = neodgm_font, alignment = 'center'}}, global_text_tags)
   self.passive_description = passive_descriptions[self.passive]
   self.spring:pull(0.2, 200, 10)
 end
@@ -1394,7 +1394,7 @@ function PassiveCard:on_mouse_enter()
   self.spring:pull(0.2, 200, 10)
   self.info_text = InfoText{group = main.current.ui, force_update = true}
   self.info_text:activate({
-    {text = self.passive_description, font = pixul_font, alignment = 'center', height_multiplier = 1.25},
+    {text = self.passive_description, font = neodgm_font, alignment = 'center', height_multiplier = 1.25},
   }, nil, nil, nil, nil, 16, 4, nil, 2)
   self.info_text.x, self.info_text.y = gw/2, gh/2 + gh/4 - 6
 end
@@ -1445,7 +1445,7 @@ function ItemCard:update(dt)
       if not self.info_text_2 then
         self.info_text_2 = InfoText{group = main.current.ui}
         self.info_text_2:activate({
-          {text = '[fg]not enough gold', font = pixul_font, alignment = 'center'},
+          {text = '[fg]not enough gold', font = neodgm_font, alignment = 'center'},
         }, nil, nil, nil, nil, 16, 4, nil, 2)
         self.info_text_2.x, self.info_text_2.y = gw/2, gh/2 + 30
       end
@@ -1473,8 +1473,8 @@ function ItemCard:update(dt)
           passive.xp = self.xp
         end
       end
-      self.parent.shop_text:set_text{{text = '[wavy_mid, fg]shop [fg]- [fg, nudge_down]gold: [yellow, nudge_down]' .. gold, font = pixul_font, alignment = 'center'}}
-      self.text = Text({{text = '[bg10]' .. tostring(self.parent.shop_level), font = pixul_font, alignment = 'center'}}, global_text_tags)
+      self.parent.shop_text:set_text{{text = '[wavy_mid, fg]shop [fg]- [fg, nudge_down]gold: [yellow, nudge_down]' .. gold, font = neodgm_font, alignment = 'center'}}
+      self.text = Text({{text = '[bg10]' .. tostring(self.parent.shop_level), font = neodgm_font, alignment = 'center'}}, global_text_tags)
       system.save_run(self.parent.level, self.parent.loop, gold, self.parent.units, self.parent.passives, self.parent.shop_level, self.parent.shop_xp, run_passive_pool, locked_state)
     end
   end
@@ -1521,17 +1521,17 @@ function ItemCard:create_info_text()
   if self.level == 3 or self.unlevellable then
     self.info_text = InfoText{group = main.current.ui, force_update = true}
     self.info_text:activate({
-      {text = '[fg]' .. passive_names[self.passive] .. ', [yellow]Lv.' .. self.level, font = pixul_font, alignment = 'center',
+      {text = '[fg]' .. passive_names[self.passive] .. ', [yellow]Lv.' .. self.level, font = neodgm_font, alignment = 'center',
         height_multiplier = 1.25},
-      {text = passive_descriptions_level[self.passive](self.level), font = pixul_font, alignment = 'center', height_multiplier = 1.25},
+      {text = passive_descriptions_level[self.passive](self.level), font = neodgm_font, alignment = 'center', height_multiplier = 1.25},
     }, nil, nil, nil, nil, 16, 4, nil, 2)
     self.info_text.x, self.info_text.y = gw/2, gh/2 + 10
   else
     self.info_text = InfoText{group = main.current.ui, force_update = true}
     self.info_text:activate({
       {text = '[fg]' .. passive_names[self.passive] .. ', [yellow]Lv.' .. self.level .. '[fg], XP: [yellow]' .. self.xp .. '/' .. self.max_xp .. '[fg], +1 XP cost: [yellow]5[fg], sells for: [yellow]' .. 
-        tostring((self.level == 1 and 10) or (self.level == 2 and 20) or (self.level == 3 and 30)), font = pixul_font, alignment = 'center', height_multiplier = 1.25},
-      {text = passive_descriptions_level[self.passive](self.level), font = pixul_font, alignment = 'center', height_multiplier = 1.25},
+        tostring((self.level == 1 and 10) or (self.level == 2 and 20) or (self.level == 3 and 30)), font = neodgm_font, alignment = 'center', height_multiplier = 1.25},
+      {text = passive_descriptions_level[self.passive](self.level), font = neodgm_font, alignment = 'center', height_multiplier = 1.25},
     }, nil, nil, nil, nil, 16, 4, nil, 2)
     self.info_text.x, self.info_text.y = gw/2, gh/2 + 10
   end
@@ -1621,7 +1621,7 @@ function ShopCard:update(dt)
       self:die()
       self.parent.cards[self.i] = nil
       self.parent:refresh_cards()
-      self.parent.party_text:set_text({{text = '[wavy_mid, fg]party ' .. tostring(#self.parent.units) .. '/' .. tostring(max_units), font = pixul_font, alignment = 'center'}})
+      self.parent.party_text:set_text({{text = '[wavy_mid, fg]party ' .. tostring(#self.parent.units) .. '/' .. tostring(max_units), font = neodgm_font, alignment = 'center'}})
       locked_state = {locked = self.parent.locked, cards = {self.parent.cards[1] and self.parent.cards[1].unit, self.parent.cards[2] and self.parent.cards[2].unit, self.parent.cards[3] and self.parent.cards[3].unit}} 
       system.save_run(self.parent.level, self.parent.loop, gold, self.parent.units, self.parent.passives, self.parent.shop_level, self.parent.shop_xp, run_passive_pool, locked_state)
     else
@@ -1734,7 +1734,7 @@ function CharacterIcon:init(args)
   self:init_game_object(args)
   self.shape = Rectangle(self.x, self.y, 40, 20)
   self.interact_with_mouse = true
-  self.character_text = Text({{text = '[' .. character_color_strings[self.character] .. ']' .. string.lower(character_names[self.character]), font = pixul_font, alignment = 'center'}}, global_text_tags)
+  self.character_text = Text({{text = '[' .. character_color_strings[self.character] .. ']' .. string.lower(character_names[self.character]), font = neodgm_font, alignment = 'center'}}, global_text_tags)
 end
 
 
@@ -1747,7 +1747,7 @@ end
 function CharacterIcon:draw()
   graphics.push(self.x, self.y, 0, self.sx*self.spring.x, self.sy*self.spring.x)
     graphics.rectangle(self.x, self.y - 7, 14, 14, 3, 3, character_colors[self.character])
-    graphics.print_centered(self.parent.cost, pixul_font, self.x + 0.5, self.y - 5, 0, 1, 1, 0, 0, _G[character_color_strings[self.character]][-5])
+    graphics.print_centered(self.parent.cost, neodgm_font, self.x + 0.5, self.y - 5, 0, 1, 1, 0, 0, _G[character_color_strings[self.character]][-5])
     self.character_text:draw(self.x, self.y + 10)
   graphics.pop()
 end
@@ -1758,12 +1758,12 @@ function CharacterIcon:on_mouse_enter()
   self.spring:pull(0.2, 200, 10)
   self.info_text = InfoText{group = main.current.ui}
   self.info_text:activate({
-    {text = '[' .. character_color_strings[self.character] .. ']' .. self.character:capitalize() .. '[fg] - cost: [yellow]' .. self.parent.cost, font = pixul_font, alignment = 'center', height_multiplier = 1.25},
-    {text = '[fg]Classes: ' .. character_class_strings[self.character], font = pixul_font, alignment = 'center', height_multiplier = 1.25},
-    {text = character_descriptions[self.character](1), font = pixul_font, alignment = 'center', height_multiplier = 2},
+    {text = '[' .. character_color_strings[self.character] .. ']' .. self.character:capitalize() .. '[fg] - cost: [yellow]' .. self.parent.cost, font = neodgm_font, alignment = 'center', height_multiplier = 1.25},
+    {text = '[fg]Classes: ' .. character_class_strings[self.character], font = neodgm_font, alignment = 'center', height_multiplier = 1.25},
+    {text = character_descriptions[self.character](1), font = neodgm_font, alignment = 'center', height_multiplier = 2},
     {text = '[' .. (self.level == 3 and 'yellow' or 'light_bg') .. ']Lv.3 [' .. (self.level == 3 and 'fg' or 'light_bg') .. ']Effect - ' .. 
-      (self.level == 3 and character_effect_names[self.character] or character_effect_names_gray[self.character]), font = pixul_font, alignment = 'center', height_multiplier = 1.25},
-    {text = (self.level == 3 and character_effect_descriptions[self.character]() or character_effect_descriptions_gray[self.character]()), font = pixul_font, alignment = 'center'},
+      (self.level == 3 and character_effect_names[self.character] or character_effect_names_gray[self.character]), font = neodgm_font, alignment = 'center', height_multiplier = 1.25},
+    {text = (self.level == 3 and character_effect_descriptions[self.character]() or character_effect_descriptions_gray[self.character]()), font = neodgm_font, alignment = 'center'},
     -- {text = character_stats[self.character](1), font = pixul_font, alignment = 'center'},
   }, nil, nil, nil, nil, 16, 4, nil, 2)
   self.info_text.x, self.info_text.y = gw/2, gh/2 + 10
@@ -1852,8 +1852,8 @@ function TutorialClassIcon:on_mouse_enter()
   local i, j, k, owned = class_set_numbers[self.class](self.units)
   self.info_text = InfoText{group = main.current.tutorial}
   self.info_text:activate({
-    {text = '[' .. class_color_strings[self.class] .. ']' .. self.class:capitalize() .. '[fg] - owned: [yellow]' .. owned, font = pixul_font, alignment = 'center', height_multiplier = 1.25},
-    {text = class_descriptions[self.class]((owned >= j and 2) or (owned >= i and 1) or 0), font = pixul_font, alignment = 'center'},
+    {text = '[' .. class_color_strings[self.class] .. ']' .. self.class:capitalize() .. '[fg] - owned: [yellow]' .. owned, font = neodgm_font, alignment = 'center', height_multiplier = 1.25},
+    {text = class_descriptions[self.class]((owned >= j and 2) or (owned >= i and 1) or 0), font = neodgm_font, alignment = 'center'},
   }, nil, nil, nil, nil, 16, 4, nil, 2)
   self.info_text.x, self.info_text.y = gw/2 - 25, gh/2 + 25
 end
@@ -2012,8 +2012,8 @@ function ClassIcon:on_mouse_enter()
   local i, j, k, owned = class_set_numbers[self.class](self.units)
   self.info_text = InfoText{group = main.current.ui}
   self.info_text:activate({
-    {text = '[' .. class_color_strings[self.class] .. ']' .. (self.class == 'conjurer' and 'Builder' or self.class:capitalize()) .. '[fg] - owned: [yellow]' .. owned, font = pixul_font, alignment = 'center', height_multiplier = 1.25},
-    {text = class_descriptions[self.class]((k and (owned >= k and 3)) or (owned >= j and 2) or (owned >= i and 1) or 0), font = pixul_font, alignment = 'center'},
+    {text = '[' .. class_color_strings[self.class] .. ']' .. (self.class == 'conjurer' and 'Builder' or self.class:capitalize()) .. '[fg] - owned: [yellow]' .. owned, font = neodgm_font, alignment = 'center', height_multiplier = 1.25},
+    {text = class_descriptions[self.class]((k and (owned >= k and 3)) or (owned >= j and 2) or (owned >= i and 1) or 0), font = neodgm_font, alignment = 'center'},
   }, nil, nil, nil, nil, 16, 4, nil, 2)
   self.info_text.x, self.info_text.y = gw/2, gh/2 + 10
 

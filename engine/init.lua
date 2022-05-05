@@ -36,6 +36,7 @@ if not path:find("init") then
   require(path .. ".math.vector")
   require(path .. ".game.trigger")
   require(path .. ".game.input")
+  require(path .. ".game.localize")
   require(path .. ".sound")
   require(path .. ".game.parent")
   require(path .. ".game.springs")

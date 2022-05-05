@@ -103,7 +103,7 @@ function Arena:on_enter(from, level, loop, units, passives, shop_level, shop_xp,
   end
 
   if self.level == 1000 then
-    self.level_1000_text = Text2{group = self.ui, x = gw/2, y = gh/2, lines = {{text = '[fg, wavy_mid]SNKRX', font = fat_font, alignment = 'center'}}}
+    self.level_1000_text = Text2{group = self.ui, x = gw/2, y = gh/2, lines = {{text = '[fg, wavy_mid]SNKRX', font = pixelroborobo_font, alignment = 'center'}}}
   
   elseif (self.level - (25*self.loop)) % 6 == 0 or self.level % 25 == 0 then
     self.boss_level = true
@@ -242,16 +242,16 @@ function Arena:on_enter(from, level, loop, units, passives, shop_level, shop_xp,
     end)
 
     if self.level == 20 and self.trailer then
-      Text2{group = self.ui, x = gw/2, y = gh/2 - 24, lines = {{text = '[fg, wavy]SNKRX', font = fat_font, alignment = 'center'}}}
-      Text2{group = self.ui, x = gw/2, y = gh/2, sx = 0.5, sy = 0.5, lines = {{text = '[fg, wavy_mid]play now!', font = fat_font, alignment = 'center'}}}
-      Text2{group = self.ui, x = gw/2, y = gh/2 + 24, sx = 0.5, sy = 0.5, lines = {{text = '[light_bg, wavy_mid]music: kubbi - ember', font = fat_font, alignment = 'center'}}}
+      Text2{group = self.ui, x = gw/2, y = gh/2 - 24, lines = {{text = '[fg, wavy]SNKRX', font = pixelroborobo_font, alignment = 'center'}}}
+      Text2{group = self.ui, x = gw/2, y = gh/2, sx = 0.5, sy = 0.5, lines = {{text = '[fg, wavy_mid]play now!', font = pixelroborobo_font, alignment = 'center'}}}
+      Text2{group = self.ui, x = gw/2, y = gh/2 + 24, sx = 0.5, sy = 0.5, lines = {{text = '[light_bg, wavy_mid]music: kubbi - ember', font = pixelroborobo_font, alignment = 'center'}}}
     end
   end
 
   if self.level == 1 then
-    local t1 = Text2{group = self.floor, x = gw/2, y = gh/2 + 2, sx = 0.6, sy = 0.6, lines = {{text = '[light_bg]<- or a         -> or d', font = fat_font, alignment = 'center'}}}
-    local t2 = Text2{group = self.floor, x = gw/2, y = gh/2 + 18, lines = {{text = '[light_bg]turn left                                      turn right', font = pixul_font, alignment = 'center'}}}
-    local t3 = Text2{group = self.floor, x = gw/2, y = gh/2 + 46, sx = 0.6, sy = 0.6, lines = {{text = '[light_bg]esc - options', font = fat_font, alignment = 'center'}}}
+    local t1 = Text2{group = self.floor, x = gw/2, y = gh/2 + 2, sx = 0.6, sy = 0.6, lines = {{text = '[light_bg]<- or a         -> or d', font = pixelroborobo_font, alignment = 'center'}}}
+    local t2 = Text2{group = self.floor, x = gw/2, y = gh/2 + 18, lines = {{text = '[light_bg]turn left                                      turn right', font = neodgm_font, alignment = 'center'}}}
+    local t3 = Text2{group = self.floor, x = gw/2, y = gh/2 + 46, sx = 0.6, sy = 0.6, lines = {{text = '[light_bg]esc - options', font = pixelroborobo_font, alignment = 'center'}}}
     t1.t:after(8, function() t1.t:tween(0.2, t1, {sy = 0}, math.linear, function() t1.sy = 0 end) end)
     t2.t:after(8, function() t2.t:tween(0.2, t2, {sy = 0}, math.linear, function() t2.sy = 0 end) end)
     t3.t:after(8, function() t3.t:tween(0.2, t3, {sy = 0}, math.linear, function() t3.sy = 0 end) end)
@@ -393,7 +393,7 @@ function Arena:update(dt)
         locked_state = nil
         system.save_run()
         main:go_to('buy_screen', 1, 0, {}, passives, 1, 0)
-      end, text = Text({{text = '[wavy, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']restarting...', font = pixul_font, alignment = 'center'}}, global_text_tags)}
+      end, text = Text({{text = '[wavy, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']restarting...', font = neodgm_font, alignment = 'center'}}, global_text_tags)}
     end
 
     if input.escape.pressed then
@@ -442,7 +442,7 @@ function Arena:quit()
       trigger:tween(1, _G, {slow_amount = 0}, math.linear, function() slow_amount = 0 end, 'slow_amount')
       trigger:tween(1, _G, {music_slow_amount = 0}, math.linear, function() music_slow_amount = 0 end, 'music_slow_amount')
       trigger:tween(4, camera, {x = gw/2, y = gh/2, r = 0}, math.linear, function() camera.x, camera.y, camera.r = gw/2, gh/2, 0 end)
-      self.win_text = Text2{group = self.ui, x = gw/2 + 40, y = gh/2 - 69, force_update = true, lines = {{text = '[wavy_mid, cbyc2]congratulations!', font = fat_font, alignment = 'center'}}}
+      self.win_text = Text2{group = self.ui, x = gw/2 + 40, y = gh/2 - 69, force_update = true, lines = {{text = '[wavy_mid, cbyc2]congratulations!', font = pixelroborobo_font, alignment = 'center'}}}
       trigger:after(2.5, function()
         local open_url = function(b, url)
           ui_switch2:play{pitch = random:float(0.95, 1.05), volume = 0.5}
@@ -452,11 +452,11 @@ function Arena:quit()
           system.open_url(url)
         end
 
-        self.build_text = Text2{group = self.ui, x = 40, y = 20, force_update = true, lines = {{text = "[wavy_mid, fg]your build", font = pixul_font, alignment = 'center'}}}
+        self.build_text = Text2{group = self.ui, x = 40, y = 20, force_update = true, lines = {{text = "[wavy_mid, fg]your build", font = neodgm_font, alignment = 'center'}}}
         for i, unit in ipairs(self.units) do
           CharacterPart{group = self.ui, x = 20, y = 40 + (i-1)*19, character = unit.character, level = unit.level, force_update = true, cant_click = true, parent = self}
-          Text2{group = self.ui, x = 20 + 14 + pixul_font:get_text_width(unit.character)/2, y = 40 + (i-1)*19, force_update = true, lines = {
-            {text = '[' .. character_color_strings[unit.character] .. ']' .. unit.character, font = pixul_font, alignment = 'left'}
+          Text2{group = self.ui, x = 20 + 14 + neodgm_font:get_text_width(unit.character)/2, y = 40 + (i-1)*19, force_update = true, lines = {
+            {text = '[' .. character_color_strings[unit.character] .. ']' .. unit.character, font = neodgm_font, alignment = 'left'}
           }}
         end
         for i, passive in ipairs(self.passives) do
@@ -473,27 +473,27 @@ function Arena:quit()
           max_units = 12
 
           self.win_text2 = Text2{group = self.ui, x = gw/2 + 40, y = gh/2 + 20, force_update = true, lines = {
-            {text = "[fg]now you've really beaten the game!", font = pixul_font, alignment = 'center', height_multiplier = 1.24},
-            {text = "[fg]thanks a lot for playing it and completing it entirely!", font = pixul_font, alignment = 'center', height_multiplier = 1.24},
-            {text = "[fg]this game was inspired by:", font = pixul_font, alignment = 'center', height_multiplier = 3.5},
-            {text = "[fg]so check them out! and to get more games like this:", font = pixul_font, alignment = 'center', height_multiplier = 3.5},
-            {text = "[wavy_mid, yellow]thanks for playing!", font = pixul_font, alignment = 'center'},
+            {text = "[fg]now you've really beaten the game!", font = neodgm_font, alignment = 'center', height_multiplier = 1.24},
+            {text = "[fg]thanks a lot for playing it and completing it entirely!", font = neodgm_font, alignment = 'center', height_multiplier = 1.24},
+            {text = "[fg]this game was inspired by:", font = neodgm_font, alignment = 'center', height_multiplier = 3.5},
+            {text = "[fg]so check them out! and to get more games like this:", font = neodgm_font, alignment = 'center', height_multiplier = 3.5},
+            {text = "[wavy_mid, yellow]thanks for playing!", font = neodgm_font, alignment = 'center'},
           }}
           SteamFollowButton{group = self.ui, x = gw/2 + 40, y = gh/2 + 58, force_update = true}
           Button{group = self.ui, x = gw - 40, y = gh - 44, force_update = true, button_text = 'credits', fg_color = 'bg10', bg_color = 'bg', action = function() self:create_credits() end}
           Button{group = self.ui, x = gw - 39, y = gh - 20, force_update = true, button_text = '  loop  ', fg_color = 'bg10', bg_color = 'bg', action = function() self:endless() end}
           self.try_loop_text = Text2{group = self.ui, x = gw - 144, y = gh - 20, force_update = true, lines = {
-            {text = '[bg10]continue run (+difficulty):', font = pixul_font},
+            {text = '[bg10]continue run (+difficulty):', font = neodgm_font},
           }}
           Button{group = self.ui, x = gw/2 - 50 + 40, y = gh/2 + 12, force_update = true, button_text = 'nimble quest', fg_color = 'bluem5', bg_color = 'blue', action = function(b) open_url(b, 'https://store.steampowered.com/app/259780/Nimble_Quest/') end}
           Button{group = self.ui, x = gw/2 + 50 + 40, y = gh/2 + 12, force_update = true, button_text = 'dota underlords', fg_color = 'bluem5', bg_color = 'blue', action = function(b) open_url(b, 'https://store.steampowered.com/app/1046930/Dota_Underlords/') end}
 
         else
           self.win_text2 = Text2{group = self.ui, x = gw/2 + 40, y = gh/2 + 5, force_update = true, lines = {
-            {text = "[fg]you've beaten the game!", font = pixul_font, alignment = 'center', height_multiplier = 1.24},
-            {text = "[fg]if you liked it:", font = pixul_font, alignment = 'center', height_multiplier = 3.5},
-            {text = "[fg]and if you liked the music:", font = pixul_font, alignment = 'center', height_multiplier = 3.5},
-            {text = "[wavy_mid, yellow]thanks for playing!", font = pixul_font, alignment = 'center'},
+            {text = "[fg]you've beaten the game!", font = neodgm_font, alignment = 'center', height_multiplier = 1.24},
+            {text = "[fg]if you liked it:", font = neodgm_font, alignment = 'center', height_multiplier = 3.5},
+            {text = "[fg]and if you liked the music:", font = neodgm_font, alignment = 'center', height_multiplier = 3.5},
+            {text = "[wavy_mid, yellow]thanks for playing!", font = neodgm_font, alignment = 'center'},
           }}
           --[[
           self.win_text2 = Text2{group = self.ui, x = gw/2 + 40, y = gh/2 + 20, force_update = true, lines = {
@@ -510,10 +510,10 @@ function Arena:quit()
           Button{group = self.ui, x = gw - 40, y = gh - 44, force_update = true, button_text = '  loop  ', fg_color = 'bg10', bg_color = 'bg', action = function() self:endless() end}
           RestartButton{group = self.ui, x = gw - 40, y = gh - 20, force_update = true}
           self.try_loop_text = Text2{group = self.ui, x = gw - 200, y = gh - 44, force_update = true, lines = {
-            {text = '[bg10]continue run (+difficulty, +1 max snake size):', font = pixul_font},
+            {text = '[bg10]continue run (+difficulty, +1 max snake size):', font = neodgm_font},
           }}
           self.try_ng_text = Text2{group = self.ui, x = gw - 187, y = gh - 20, force_update = true, lines = {
-            {text = '[bg10]new run (+difficulty, +1 max snake size):', font = pixul_font},
+            {text = '[bg10]new run (+difficulty, +1 max snake size):', font = neodgm_font},
           }}
           self.credits_button = Button{group = self.ui, x = gw - 40, y = gh - 68, force_update = true, button_text = 'credits', fg_color = 'bg10', bg_color = 'bg', action = function() self:create_credits() end}
         end
@@ -669,7 +669,7 @@ function Arena:quit()
     end
 
   else
-    if not self.arena_clear_text then self.arena_clear_text = Text2{group = self.ui, x = gw/2, y = gh/2 - 48, lines = {{text = '[wavy_mid, cbyc]arena clear!', font = fat_font, alignment = 'center'}}} end
+    if not self.arena_clear_text then self.arena_clear_text = Text2{group = self.ui, x = gw/2, y = gh/2 - 48, lines = {{text = '[wavy_mid, cbyc]arena clear!', font = pixelroborobo_font, alignment = 'center'}}} end
     self:gain_gold()
     self.t:after(2, function()
       self.slow_transitioning = true
@@ -684,13 +684,13 @@ function Arena:quit()
         trigger:tween(4, camera, {x = gw/2, y = gh/2, r = 0}, math.linear, function() camera.x, camera.y, camera.r = gw/2, gh/2, 0 end)
         self:set_passives()
         RerollButton{group = main.current.ui, x = gw - 40, y = gh - 40, parent = self, force_update = true}
-        self.shop_text = Text({{text = '[wavy_mid, fg]gold: [yellow]' .. gold, font = pixul_font, alignment = 'center'}}, global_text_tags)
+        self.shop_text = Text({{text = '[wavy_mid, fg]gold: [yellow]' .. gold, font = neodgm_font, alignment = 'center'}}, global_text_tags)
 
-        self.build_text = Text2{group = self.ui, x = 40, y = 20, force_update = true, lines = {{text = "[wavy_mid, fg]your build", font = pixul_font, alignment = 'center'}}}
+        self.build_text = Text2{group = self.ui, x = 40, y = 20, force_update = true, lines = {{text = "[wavy_mid, fg]your build", font = neodgm_font, alignment = 'center'}}}
         for i, unit in ipairs(self.units) do
           CharacterPart{group = self.ui, x = 20, y = 40 + (i-1)*19, character = unit.character, level = unit.level, force_update = true, cant_click = true, parent = self}
-          Text2{group = self.ui, x = 20 + 14 + pixul_font:get_text_width(unit.character)/2, y = 40 + (i-1)*19, force_update = true, lines = {
-            {text = '[' .. character_color_strings[unit.character] .. ']' .. unit.character, font = pixul_font, alignment = 'left'}
+          Text2{group = self.ui, x = 20 + 14 + neodgm_font:get_text_width(unit.character)/2, y = 40 + (i-1)*19, force_update = true, lines = {
+            {text = '[' .. character_color_strings[unit.character] .. ']' .. unit.character, font = neodgm_font, alignment = 'left'}
           }}
         end
         for i, passive in ipairs(self.passives) do
@@ -734,7 +734,7 @@ function Arena:set_passives(from_reroll)
   if passive_4 then
     table.insert(self.cards, PassiveCard{group = main.current.ui, x = gw/2 - w/2 + 3*(card_w + 20) + card_w/2 + 45, y = gh/2, w = card_w, h = card_h, card_i = 4, arena = self, passive = passive_4, force_update = true})
   end
-  self.passive_text = Text2{group = self.ui, x = gw/2 + 45, y = gh/2 - 75, lines = {{text = '[fg, wavy]choose one', font = fat_font, alignment = 'center'}}}
+  self.passive_text = Text2{group = self.ui, x = gw/2 + 45, y = gh/2 - 75, lines = {{text = '[fg, wavy]choose one', font = pixelroborobo_font, alignment = 'center'}}}
   if not passive_1 and not passive_2 and not passive_3 and not passive_4 then
     self:transition()
   end
@@ -769,14 +769,14 @@ function Arena:draw()
   camera:attach()
   if self.start_time and self.start_time > 0 and not self.choosing_passives then
     graphics.push(gw/2, gh/2 - 48, 0, self.hfx.condition1.x, self.hfx.condition1.x)
-      graphics.print_centered(tostring(self.start_time), fat_font, gw/2, gh/2 - 48, 0, 1, 1, nil, nil, self.hfx.condition1.f and fg[0] or red[0])
+      graphics.print_centered(tostring(self.start_time), pixelroborobo_font, gw/2, gh/2 - 48, 0, 1, 1, nil, nil, self.hfx.condition1.f and fg[0] or red[0])
     graphics.pop()
   end
 
   if self.boss_level then
     if self.start_time <= 0 then
       graphics.push(self.x2 - 106, self.y1 - 10, 0, self.hfx.condition2.x, self.hfx.condition2.x)
-        graphics.print_centered('kill the elite', fat_font, self.x2 - 106, self.y1 - 10, 0, 0.6, 0.6, nil, nil, fg[0])
+        graphics.print_centered('kill the elite', pixelroborobo_font, self.x2 - 106, self.y1 - 10, 0, 0.6, 0.6, nil, nil, fg[0])
       graphics.pop()
     end
   else
@@ -784,12 +784,12 @@ function Arena:draw()
       if self.win_condition == 'wave' then
         if self.start_time <= 0 then
           graphics.push(self.x2 - 50, self.y1 - 10, 0, self.hfx.condition2.x, self.hfx.condition2.x)
-            graphics.print_centered('wave:', fat_font, self.x2 - 50, self.y1 - 10, 0, 0.6, 0.6, nil, nil, fg[0])
+            graphics.print_centered('wave:', pixelroborobo_font, self.x2 - 50, self.y1 - 10, 0, 0.6, 0.6, nil, nil, fg[0])
           graphics.pop()
           local wave = self.wave
           if wave > self.max_waves then wave = self.max_waves end
-          graphics.push(self.x2 - 25 + fat_font:get_text_width(wave .. '/' .. self.max_waves)/2, self.y1 - 8, 0, self.hfx.condition1.x, self.hfx.condition1.x)
-            graphics.print(wave .. '/' .. self.max_waves, fat_font, self.x2 - 25, self.y1 - 8, 0, 0.75, 0.75, nil, fat_font.h/2, self.hfx.condition1.f and fg[0] or yellow[0])
+          graphics.push(self.x2 - 25 + pixelroborobo_font:get_text_width(wave .. '/' .. self.max_waves)/2, self.y1 - 8, 0, self.hfx.condition1.x, self.hfx.condition1.x)
+            graphics.print(wave .. '/' .. self.max_waves, pixelroborobo_font, self.x2 - 25, self.y1 - 8, 0, 0.75, 0.75, nil, pixelroborobo_font.h/2, self.hfx.condition1.f and fg[0] or yellow[0])
           graphics.pop()
         end
       end
@@ -797,7 +797,7 @@ function Arena:draw()
   end
 
   if state.run_timer then
-    graphics.print_centered(math.round(run_time, 0), fat_font, self.x2 - 12, self.y2 + 16, 0, 0.6, 0.6, nil, nil, fg[0])
+    graphics.print_centered(math.round(run_time, 0), pixelroborobo_font, self.x2 - 12, self.y2 + 16, 0, 0.6, 0.6, nil, nil, fg[0])
   end
   camera:detach()
 
@@ -823,22 +823,22 @@ function Arena:die()
     self.t:tween(2, self, {main_slow_amount = 0}, math.linear, function() self.main_slow_amount = 0 end)
     self.t:tween(2, _G, {music_slow_amount = 0}, math.linear, function() music_slow_amount = 0 end)
     self.died_text = Text2{group = self.ui, x = gw/2, y = gh/2 - 32, lines = {
-      {text = '[wavy_mid, cbyc]you died...', font = fat_font, alignment = 'center', height_multiplier = 1.25},
+      {text = '[wavy_mid, cbyc]you died...', font = pixelroborobo_font, alignment = 'center', height_multiplier = 1.25},
     }}
     trigger:tween(2, camera, {x = gw/2, y = gh/2, r = 0}, math.linear, function() camera.x, camera.y, camera.r = gw/2, gh/2, 0 end)
     self.t:after(2, function()
-      self.build_text = Text2{group = self.ui, x = 40, y = 20, force_update = true, lines = {{text = "[wavy_mid, fg]your build", font = pixul_font, alignment = 'center'}}}
+      self.build_text = Text2{group = self.ui, x = 40, y = 20, force_update = true, lines = {{text = "[wavy_mid, fg]your build", font = neodgm_font, alignment = 'center'}}}
       for i, unit in ipairs(self.units) do
         CharacterPart{group = self.ui, x = 20, y = 40 + (i-1)*19, character = unit.character, level = unit.level, force_update = true, cant_click = true, parent = self}
-        Text2{group = self.ui, x = 20 + 14 + pixul_font:get_text_width(unit.character)/2, y = 40 + (i-1)*19, force_update = true, lines = {
-          {text = '[' .. character_color_strings[unit.character] .. ']' .. unit.character, font = pixul_font, alignment = 'left'}
+        Text2{group = self.ui, x = 20 + 14 + neodgm_font:get_text_width(unit.character)/2, y = 40 + (i-1)*19, force_update = true, lines = {
+          {text = '[' .. character_color_strings[unit.character] .. ']' .. unit.character, font = neodgm_font, alignment = 'left'}
         }}
       end
       for i, passive in ipairs(self.passives) do
         ItemCard{group = self.ui, x = 120 + (i-1)*30, y = 30, w = 30, h = 45, sx = 0.75, sy = 0.75, force_update = true, passive = passive.passive , level = passive.level, xp = passive.xp, parent = self}
       end
       self.death_info_text = Text2{group = self.ui, x = gw/2, y = gh/2, sx = 0.7, sy = 0.7, lines = {
-        {text = '[wavy_mid, fg]level reached: [wavy_mid, yellow]' .. self.level, font = fat_font, alignment = 'center'},
+        {text = '[wavy_mid, fg]level reached: [wavy_mid, yellow]' .. self.level, font = pixelroborobo_font, alignment = 'center'},
       }}
       self.restart_button = Button{group = self.ui, x = gw/2, y = gh/2 + 24, force_update = true, button_text = 'restart run (r)', fg_color = 'bg10', bg_color = 'bg', action = function(b)
         self.transitioning = true
@@ -865,7 +865,7 @@ function Arena:die()
           main:add(BuyScreen'buy_screen')
           system.save_run()
           main:go_to('buy_screen', 1, 0, {}, passives, 1, 0)
-        end, text = Text({{text = '[wavy, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']restarting...', font = pixul_font, alignment = 'center'}}, global_text_tags)}
+        end, text = Text({{text = '[wavy, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']restarting...', font = neodgm_font, alignment = 'center'}}, global_text_tags)}
       end}
     end)
     return true
@@ -905,18 +905,18 @@ function Arena:create_credits()
   end}
 
   self.in_credits = true
-  Text2{group = self.credits, x = 60, y = 20, lines = {{text = '[bg10]main dev: ', font = pixul_font}}}
+  Text2{group = self.credits, x = 60, y = 20, lines = {{text = '[bg10]main dev: ', font = neodgm_font}}}
   Button{group = self.credits, x = 117, y = 20, button_text = 'a327ex', fg_color = 'bg10', bg_color = 'bg', credits_button = true, action = function(b) open_url(b, 'https://store.steampowered.com/dev/a327ex/') end}
-  Text2{group = self.credits, x = 60, y = 50, lines = {{text = '[bg10]mobile: ', font = pixul_font}}}
+  Text2{group = self.credits, x = 60, y = 50, lines = {{text = '[bg10]mobile: ', font = neodgm_font}}}
   Button{group = self.credits, x = 144, y = 50, button_text = 'David Khachaturov', fg_color = 'bg10', bg_color = 'bg', credits_button = true, action = function(b) open_url(b, 'https://davidobot.net/') end}
-  Text2{group = self.credits, x = 60, y = 80, lines = {{text = '[blue]libraries: ', font = pixul_font}}}
+  Text2{group = self.credits, x = 60, y = 80, lines = {{text = '[blue]libraries: ', font = neodgm_font}}}
   Button{group = self.credits, x = 113, y = 80, button_text = 'love2d', fg_color = 'bluem5', bg_color = 'blue', credits_button = true, action = function(b) open_url(b, 'https://love2d.org') end}
   Button{group = self.credits, x = 170, y = 80, button_text = 'bakpakin', fg_color = 'bluem5', bg_color = 'blue', credits_button = true, action = function(b) open_url(b, 'https://github.com/bakpakin/binser') end}
   Button{group = self.credits, x = 237, y = 80, button_text = 'davisdude', fg_color = 'bluem5', bg_color = 'blue', credits_button = true, action = function(b) open_url(b, 'https://github.com/davisdude/mlib') end}
   Button{group = self.credits, x = 306, y = 80, button_text = 'tesselode', fg_color = 'bluem5', bg_color = 'blue', credits_button = true, action = function(b) open_url(b, 'https://github.com/tesselode/ripple') end}
-  Text2{group = self.credits, x = 60, y = 110, lines = {{text = '[green]music: ', font = pixul_font}}}
+  Text2{group = self.credits, x = 60, y = 110, lines = {{text = '[green]music: ', font = neodgm_font}}}
   Button{group = self.credits, x = 100, y = 110, button_text = 'kubbi', fg_color = 'greenm5', bg_color = 'green', credits_button = true, action = function(b) open_url(b, 'https://kubbimusic.com/album/ember') end}
-  Text2{group = self.credits, x = 60, y = 140, lines = {{text = '[yellow]sounds: ', font = pixul_font}}}
+  Text2{group = self.credits, x = 60, y = 140, lines = {{text = '[yellow]sounds: ', font = neodgm_font}}}
   Button{group = self.credits, x = 135, y = 140, button_text = 'sidearm studios', fg_color = 'yellowm5', bg_color = 'yellow', credits_button = true, action = function(b)
     open_url(b, 'https://sidearm-studios.itch.io/ultimate-sound-fx-bundle') end}
   Button{group = self.credits, x = 217, y = 140, button_text = 'justinbw', fg_color = 'yellowm5', bg_color = 'yellow', credits_button = true, action = function(b)
@@ -935,7 +935,7 @@ function Arena:create_credits()
     open_url(b, 'https://store.steampowered.com/developer/T_TGames') end}
   Button{group = self.credits, x = 262, y = 160, button_text = 'InspectorJ', fg_color = 'yellowm5', bg_color = 'yellow', credits_button = true, action = function(b)
     open_url(b, 'https://freesound.org/people/InspectorJ/sounds/458586/') end}
-  Text2{group = self.credits, x = 70, y = 190, lines = {{text = '[red]playtesters: ', font = pixul_font}}}
+  Text2{group = self.credits, x = 70, y = 190, lines = {{text = '[red]playtesters: ', font = neodgm_font}}}
   Button{group = self.credits, x = 130, y = 190, button_text = 'Jofer', fg_color = 'redm5', bg_color = 'red', credits_button = true, action = function(b) 
     open_url(b, 'https://twitter.com/JofersGames') end}
   Button{group = self.credits, x = 172, y = 190, button_text = 'ekun', fg_color = 'redm5', bg_color = 'red', credits_button = true, action = function(b) 
@@ -997,35 +997,35 @@ function Arena:transition()
     main:go_to('buy_screen', self.level+1, self.loop, self.units, self.passives, self.shop_level, self.shop_xp)
     t.t:after(0.1, function()
       t.text:set_text({
-        {text = '[nudge_down, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']gold gained: ' .. tostring(self.gold_gained or 0) .. ' + ' .. tostring(self.gold_picked_up or 0), font = pixul_font, 
+        {text = '[nudge_down, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']gold gained: ' .. tostring(self.gold_gained or 0) .. ' + ' .. tostring(self.gold_picked_up or 0), font = neodgm_font, 
           alignment = 'center', height_multiplier = 1.5},
-        {text = '[wavy_lower, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']interest: 0', font = pixul_font, alignment = 'center', height_multiplier = 1.5},
-        {text = '[wavy_lower, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']total: 0', font = pixul_font, alignment = 'center'}
+        {text = '[wavy_lower, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']interest: 0', font = neodgm_font, alignment = 'center', height_multiplier = 1.5},
+        {text = '[wavy_lower, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']total: 0', font = neodgm_font, alignment = 'center'}
       })
       _G[random:table{'coins1', 'coins2', 'coins3'}]:play{pitch = random:float(0.95, 1.05), volume = 0.5}
       t.t:after(0.2, function()
         t.text:set_text({
-          {text = '[wavy_lower, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']gold gained: ' .. tostring(self.gold_gained or 0) .. ' + ' .. tostring(self.gold_picked_up or 0), font = pixul_font,
+          {text = '[wavy_lower, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']gold gained: ' .. tostring(self.gold_gained or 0) .. ' + ' .. tostring(self.gold_picked_up or 0), font = neodgm_font,
             alignment = 'center', height_multiplier = 1.5},
-          {text = '[nudge_down, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']interest: ' .. tostring(self.interest or 0), font = pixul_font, alignment = 'center', height_multiplier = 1.5},
-          {text = '[wavy_lower, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']total: 0', font = pixul_font, alignment = 'center'}
+          {text = '[nudge_down, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']interest: ' .. tostring(self.interest or 0), font = neodgm_font, alignment = 'center', height_multiplier = 1.5},
+          {text = '[wavy_lower, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']total: 0', font = neodgm_font, alignment = 'center'}
         })
         _G[random:table{'coins1', 'coins2', 'coins3'}]:play{pitch = random:float(0.95, 1.05), volume = 0.5}
         t.t:after(0.2, function()
           t.text:set_text({
-            {text = '[wavy_lower, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']gold gained: ' .. tostring(self.gold_gained or 0) .. ' + ' .. tostring(self.gold_picked_up or 0), font = pixul_font,
+            {text = '[wavy_lower, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']gold gained: ' .. tostring(self.gold_gained or 0) .. ' + ' .. tostring(self.gold_picked_up or 0), font = neodgm_font,
               alignment = 'center', height_multiplier = 1.5},
-            {text = '[wavy_lower, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']interest: ' .. tostring(self.interest or 0), font = pixul_font, alignment = 'center', height_multiplier = 1.5},
-            {text = '[nudge_down, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']total: ' .. tostring((self.gold_gained or 0) + (self.interest or 0) + (self.gold_picked_up or 0)), font = pixul_font, alignment = 'center'}
+            {text = '[wavy_lower, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']interest: ' .. tostring(self.interest or 0), font = neodgm_font, alignment = 'center', height_multiplier = 1.5},
+            {text = '[nudge_down, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']total: ' .. tostring((self.gold_gained or 0) + (self.interest or 0) + (self.gold_picked_up or 0)), font = neodgm_font, alignment = 'center'}
           })
           _G[random:table{'coins1', 'coins2', 'coins3'}]:play{pitch = random:float(0.95, 1.05), volume = 0.5}
         end)
       end)
     end)
   end, text = Text({
-    {text = '[wavy_lower, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']gold gained: 0 + 0', font = pixul_font, alignment = 'center', height_multiplier = 1.5},
-    {text = '[wavy_lower, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']interest: 0', font = pixul_font, alignment = 'center', height_multiplier = 1.5},
-    {text = '[wavy_lower, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']total: 0', font = pixul_font, alignment = 'center'}
+    {text = '[wavy_lower, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']gold gained: 0 + 0', font = neodgm_font, alignment = 'center', height_multiplier = 1.5},
+    {text = '[wavy_lower, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']interest: 0', font = neodgm_font, alignment = 'center', height_multiplier = 1.5},
+    {text = '[wavy_lower, ' .. tostring(state.dark_transitions and 'fg' or 'bg') .. ']total: 0', font = neodgm_font, alignment = 'center'}
   }, global_text_tags)}
 end
 

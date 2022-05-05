@@ -1,0 +1,18 @@
+{
+    "en": {
+        "game_title": "[wavy_mid, fg]SNKRX",
+        "arena_start_button": "arena_start",
+        "option_button": "options",
+        "quit_button": "quit",
+        "buy_soundtrack": "buy the soundtrack!",
+        "join_discord": "join the community discord!"
+    },
+    "ko": {
+        "game_title": "[wavy_mid, fg]SNKRX_한국어",
+        "arena_start_button": "게임 시작",
+        "option_button": "옵션",
+        "quit_button": "나가기",
+        "buy_soundtrack": "사운드 트랙을 사세요!",
+        "join_discord": "디스코드에 참가하세요!"
+    }
+}

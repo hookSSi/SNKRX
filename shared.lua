@@ -39,8 +39,9 @@ function shared_init()
   if state.volume_muted then sfx.volume = 0 end
   if state.music_muted then music.volume = 0 end
 
-  fat_font = Font('FatPixelFont', 8)
-  pixul_font = Font('PixulBrush', 8)
+  pixelroborobo_font = Font('pixelroborobo', 16)
+  neodgm_font = Font('neodgm_pro', 16)
+
   background_canvas = Canvas(gw, gh)
   main_canvas = Canvas(gw, gh, {stencil = true})
   shadow_canvas = Canvas(gw, gh)
@@ -50,6 +51,10 @@ function shared_init()
   star_positions = {}
   for i = -30, gh + 30, 15 do table.insert(star_positions, {x = -40, y = i}) end
   for i = -30, gw, 15 do table.insert(star_positions, {x = i, y = gh + 40}) end
+
+  -- Localization
+  mainmenuLocal = Localize("mainmenu", "ko").table
+
 end
 
 
@@ -296,9 +301,9 @@ function Node:draw()
   end
 
   if self.label then
-    local w = pixul_font:get_text_width(self.label)
+    local w = neodgm_font:get_text_width(self.label)
     local s = math.remap(self.rs, 6, 12, 3.5, 2.5)
-    graphics.print_centered(self.label, pixul_font, self.x + (w/6)*math.cos(self.label_r) + s*self.rs*math.cos(self.label_r), self.y + s*self.rs*math.sin(self.label_r), 0, self.spring.x*self.sx, self.spring.x*self.sy, nil, nil, self.label_color)
+    graphics.print_centered(self.label, neodgm_font, self.x + (w/6)*math.cos(self.label_r) + s*self.rs*math.cos(self.label_r), self.y + s*self.rs*math.sin(self.label_r), 0, self.spring.x*self.sx, self.spring.x*self.sy, nil, nil, self.label_color)
   end
 end
 

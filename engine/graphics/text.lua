@@ -49,6 +49,8 @@ text = Text({
 -- height_multiplier (optional) - multiplier over the font's height for placing the line below
 -- The text object itself also has .w and .h which corresponds to the width of the biggest line and height of all lines + offsets, respectively.
 -- If 'alignment_width' is set to a specific line then that line will be automatically set to that width, and if it is the biggest then .w will also be set to that value.
+
+
 Text = Object:extend()
 function Text:init(text_data, text_tags)
   self.t = Trigger()
@@ -104,6 +106,7 @@ end
 function Text:format_text()
   self.w = 0
   for i, line in ipairs(self.lines) do
+    print(line.raw_text)
     local line_width = math.max(line.font:get_text_width(line.raw_text), line.alignment_width or 0)
     if line_width > self.w then
       self.w = line_width
@@ -168,13 +171,13 @@ end
 function Text:parse(text_data)
   for _, line in ipairs(text_data) do
     local tags = {}
-    for i, tags_text, j in line.text:gmatch("()%[(.-)%]()") do
+    for i, tags_text, j in utf8.gmatch(line.text, "()%[(.-)%]()") do
       if tags_text == "" then
         table.insert(tags, {i = tonumber(i), j = tonumber(j)-1})
         line.tags = tags
       else
         local local_tags = {}
-        for tag in tags_text:gmatch("[%w_]+") do table.insert(local_tags, tag) end
+        for tag in utf8.gmatch(tags_text, "[%w_]+") do table.insert(local_tags, tag) end
         table.insert(tags, {i = tonumber(i), j = tonumber(j)-1, tags = local_tags})
         line.tags = tags
       end
@@ -185,8 +188,8 @@ function Text:parse(text_data)
   for _, line in ipairs(text_data) do
     line.characters = {}
     local current_tags = nil
-    for i = 1, #line.text do
-      local c = line.text:sub(i, i)
+    for i = 1, utf8.len(line.text) do
+      local c = utf8.sub(line.text, i, i)
       local inside_tags = false
       for _, tag in ipairs(line.tags) do
         if i >= tag.i and i <= tag.j then
@@ -203,7 +206,7 @@ function Text:parse(text_data)
 
   for _, line in ipairs(text_data) do
     local raw_text = ""
-    for _, character in ipairs(line.characters) do
+    for i, character in ipairs(line.characters) do
       raw_text = raw_text .. character.character
     end
     line.raw_text = raw_text
