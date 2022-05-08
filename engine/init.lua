@@ -42,6 +42,7 @@ if not path:find("init") then
   require(path .. ".game.springs")
   require(path .. ".game.flashes")
   require(path .. ".game.hitfx")
+  require(path .. ".game.button")
 end
 
 function engine_run(config)
@@ -100,6 +101,7 @@ function engine_run(config)
   mouse = Vector(0, 0)
   last_mouse = Vector(0, 0)
   mouse_dt = Vector(0, 0)
+  math.eps = 1e-14
   init()
 
   if love.timer then love.timer.step() end

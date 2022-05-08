@@ -6,6 +6,7 @@ function Input:init(joystick_index)
     ["rightstick"] = "rightstick", ["leftshoulder"] = "lb", ["rightshoulder"] = "rb", ["dpdown"] = "dpdown", ["dpup"] = "dpup", ["dpleft"] = "dpleft", ["dpright"] = "dpright",
   }
   self.index_to_gamepad_axis = {["leftx"] = "leftx", ["rightx"] = "rightx", ["lefty"] = "lefty", ["righty"] = "righty", ["triggerleft"] = "lt", ["triggerright"] = "rt"}
+  self.index_to_joystick_axis = {}
   self.gamepad_axis = {}
   self.joystick_index = joystick_index or 1
   self.joystick = love.joystick.getJoysticks()[self.joystick_index]

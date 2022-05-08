@@ -1,5 +1,10 @@
 Weekly maintenance updates:
 
+#0
+
+  * 컨트롤러 지원
+  * UI 한글, 영어 차이 개선
+
 #3
 
   * Fixed a bug that would cause incorrect party size after loading a looped run (thanks ArnaudOechslin https://github.com/a327ex/SNKRX/pull/15)

@@ -106,7 +106,6 @@ end
 function Text:format_text()
   self.w = 0
   for i, line in ipairs(self.lines) do
-    print(line.raw_text)
     local line_width = math.max(line.font:get_text_width(line.raw_text), line.alignment_width or 0)
     if line_width > self.w then
       self.w = line_width

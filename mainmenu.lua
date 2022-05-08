@@ -19,6 +19,8 @@ function MainMenu:on_enter(from)
   self.post_main = Group()
   self.effects = Group()
   self.main_ui = Group():no_camera()
+  self.main_ui.idx = 0
+  self.isAxisInUse = false
   self.ui = Group():no_camera()
   self.main:disable_collision_between('player', 'player')
   self.main:disable_collision_between('player', 'projectile')
@@ -79,6 +81,8 @@ function MainMenu:on_enter(from)
       self.player:add_follower(Player{group = self.main, character = unit.character, level = unit.level, passives = self.passives, ii = i})
     end
   end
+
+  -- Instantiate Menu Objects
 
   self.title_text = Text({{text = mainmenuLocal.game_title, font = pixelroborobo_font, alignment = 'center'}}, global_text_tags)
 
@@ -165,6 +169,40 @@ end
 function MainMenu:update(dt)
   if main_song_instance:isStopped() then
     main_song_instance = _G[random:table{'song1', 'song2', 'song3', 'song4', 'song5'}]:play{volume = 0.5}
+  end
+
+  -- main menu joystick input process
+
+  if input.joystick ~= nil then
+    if self.main_ui.idx == 0 then  -- check gamepad is available
+      self.main_ui.idx = 1
+      self.main_ui.objects[self.main_ui.idx]:set_selected(true)
+    elseif input:axis('lefty') then
+      if math.abs(input:axis('lefty')) > 0.5 and not self.isAxisInUse then
+        self.isAxisInUse = true
+
+        if input:axis('lefty') > 0.5 then  -- left stick UP
+          self.main_ui.idx = self.main_ui.idx + 1
+          if self.main_ui.idx > #(self.main_ui.objects) then self.main_ui.idx = 1 end
+        end
+
+        if input:axis('lefty') < -0.5 then -- left stick DOWN
+          self.main_ui.idx = self.main_ui.idx - 1
+          if self.main_ui.idx < 1 then self.main_ui.idx = #(self.main_ui.objects) end
+        end
+
+        -- initialize and apply button selected
+        for i, button in ipairs(self.main_ui.objects) do
+          if i == self.main_ui.idx then
+            button:set_selected(true)
+          else
+            button:set_selected(false)
+          end
+        end
+      elseif math.abs(input:axis('lefty')) < math.eps then  -- 이전 axis와 차이를 비교하거나 프레임 카운팅을 해야할 듯?
+        self.isAxisInUse = false
+      end
+    end
   end
 
   if input.escape.pressed then
